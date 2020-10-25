@@ -4,11 +4,10 @@ from Assembler.InstructionTable import *
 def plog(*args):
     pass
 
-plog = print
+#plog = print
 
 offsetlist = {}
 disasmtbl = {}
-fuck = False
 
 class Disassembler:
 
@@ -83,7 +82,7 @@ class Disassembler:
 
         for opr in inst.OperandFormat:
             inst.Operand.append(entry.GetOperand(opr, fs))
-            # print('x=',entry)
+            # plog('x=',entry)
             if opr.lower() == 'o':
                 inst.BranchTargets.append(inst.Operand[-1])
 
@@ -133,10 +132,10 @@ class Disassembler:
             InstructionTable = data.InstructionTable
 
             pos = fs.tell()
-            print('hello????')
-            # print('%08X: ' % pos, end = '')
+            #plog('hello????')
+            #plog('%08X: ' % pos, end = '')
             op = InstructionTable.GetOpCode(fs)
-            print('%02X ' % op, end = '')
+            #plog('%02X ' % op, end = '')
 
             entry = InstructionTable[op]
 
@@ -234,7 +233,7 @@ class Disassembler:
         inst = data.Instruction
         entry = data.TableEntry
 
-        print('offset %08x'%data.Instruction.Offset)
+        plog('offset %08x'%data.Instruction.Offset)
 
         opname = entry.OpName
         oprlist = entry.FormatAllOperand(
@@ -245,7 +244,7 @@ class Disassembler:
                             data.LabelMap
                         )
                     )
-        # print(['%s(%s)' % (opname, oprlist)])
+        # plog(['%s(%s)' % (opname, oprlist)])
         return ['%s(%s)' % (opname, oprlist)]
 
     class FormatData:
@@ -370,12 +369,12 @@ class Disassembler:
             handlerdata.LabelMap        = LabelMap
             handlerdata.Format          = FormatInstructionWrapExport
 
-            #print('%08X' % inst.Offset)
+            #plog('%08X' % inst.Offset)
             #del disasmtbl[inst.Offset]
 
-            #print('%08X %02X: ' % (inst.Offset, inst.OpCode), end  = '')
+            #plog('%08X %02X: ' % (inst.Offset, inst.OpCode), end  = '')
             symbol = FormatInstructionWrap(handlerdata)
-            #print(symbol)
+            #plog(symbol)
 
             text += symbol
 

@@ -8,7 +8,6 @@ def plog(*args):
 
 offsetlist = {}
 disasmtbl = {}
-fuck = False
 
 class Disassembler:
     def __init__(self, InstructionTable, DiasmInstructionCallback = None):
@@ -79,9 +78,9 @@ class Disassembler:
 
             offsetlist[pos] = True
 
-            print('%08X: ' % pos, end = '')
+            plog('%08X: ' % pos, end = '')
             op = InstructionTable.GetOpCode(Stream)
-            print('%02X' % op)
+            plog('%02X' % op)
 
             entry = InstructionTable[op]
 
@@ -201,12 +200,12 @@ class Disassembler:
             data.Format         = self.FormatInstruction
             data.LabeledMap     = LabeledMap
 
-            #print('%08X' % inst.Offset)
+            #plog('%08X' % inst.Offset)
             #del disasmtbl[inst.Offset]
 
-            #print('%08X %02X: ' % (inst.Offset, inst.OpCode), end  = '')
+            #plog('%08X %02X: ' % (inst.Offset, inst.OpCode), end  = '')
             symbol = self.FormatInstruction(data)
-            #print(symbol)
+            #plog(symbol)
 
             if inst.RefCount != 0:
                 name = InstructionTable.GetLabelName(inst.Offset)

@@ -94,7 +94,7 @@ InstructionNames[0x51]  = 'OP_51'
 InstructionNames[0x52]  = 'OP_52'
 InstructionNames[0x53]  = 'TalkBegin'
 InstructionNames[0x54]  = 'TalkEnd'
-InstructionNames[0x55]  = 'AnonymousTalk'
+InstructionNames[0x55]  = 'AnonTalk'
 InstructionNames[0x56]  = 'OP_56'
 InstructionNames[0x57]  = 'OP_57'
 InstructionNames[0x58]  = 'MenuTitle'
@@ -146,7 +146,7 @@ InstructionNames[0x8A]  = 'OP_8A'
 InstructionNames[0x8B]  = 'OP_8B'
 InstructionNames[0x8C]  = 'SetChrChipByIndex'
 InstructionNames[0x8D]  = 'SetChrSubChip'
-InstructionNames[0x8E]  = 'OP_8E'
+InstructionNames[0x8E]  = 'SetChrNameByIndex'
 InstructionNames[0x8F]  = 'SetChrPos'
 InstructionNames[0x90]  = 'OP_90'
 InstructionNames[0x91]  = 'TurnDirection'
@@ -282,7 +282,7 @@ class ScpString:
 
     def __str__(self):
         if self.CtrlCode == SCPSTR_CODE_STRING:
-            return '"%s"' % self.Value
+            return '"%s"' % self.Value.replace('"', '\\"')
 
         value = self.Value
         code = GetStrCode(self.CtrlCode)
@@ -336,6 +336,7 @@ def FormatFuncString(data, oprfmt, mark_number = None):
     txt = [ '', '%s(' % entry.OpName ]
 
     maxlen = 0
+    idcomm_set = False
 
     for i in range(len(oprfmt)):
         opr = oprfmt[i]
@@ -346,6 +347,15 @@ def FormatFuncString(data, oprfmt, mark_number = None):
             #txt.append('    0x%X,' % ins.Operand[i])
         else:
             strlist = BuildStringListFromObjectList(ins.Operand[i])
+            if not idcomm_set:
+                idcomm_set = True
+                idcomm = '    # TAG:%s_%02X' % (InstructionNames[data.Instruction.OpCode].upper(), data.Instruction.Offset)
+                txt.append(idcomm)
+            
+            if len(strlist) == 0:
+                s = '    ""'
+                txt.append(s)
+                continue
 
             if len(strlist) == 1:
                 s = '    %s' % strlist[0]
@@ -389,13 +399,38 @@ class EDAOScenaInstructionTableEntry(InstructionTableEntry):
         fs = data.FileStream
         labels = data.Instruction.Labels
 
+        def enc_str(str):
+            ret = bytearray()
+            i = 0
+            while i < len(str):
+                if ord(str[i]) == SCPSTR_CODE_ITEM:
+                    ret.append(ord(str[i]))
+                    ret.append(ord(str[i+1]))
+                    ret.append(ord(str[i+2]))
+                    i += 3
+                elif ord(str[i]) == SCPSTR_CODE_COLOR:
+                    ret.append(ord(str[i]))
+                    ret.append(ord(str[i+1]))
+                    i += 2
+                elif ord(str[i]) < 0x20:
+                    ret.append(ord(str[i]))
+                    i += 1
+                else:
+                    ret.extend(str[i].encode(CODE_PAGE))
+                    i += 1
+            return bytes(ret)
+
         def wexpr(value):
             for expr in value:
                 expr.WriteExpression(data)
 
         def wstr(value, recursion = False):
             if type(value) == str:
-                value = value.encode(CODE_PAGE)
+                value = enc_str(value)
+                if not recursion:
+                    value += b'\x00'
+
+            elif type(value) == bytes:
                 if not recursion:
                     value += b'\x00'
 
@@ -1335,6 +1370,27 @@ def scp_anonymous_talk(data):
 
         data.Instruction.OperandFormat = 'WS'
 
+def scp_create_menu_title(data):
+
+    if data.Reason == HANDLER_REASON_DISASM:
+
+        fs = data.FileStream
+        ins = data.Instruction
+
+        ins.Operand = data.TableEntry.GetAllOperand('hhhS', fs)
+
+        ins.OperandFormat = 'hhhS'
+
+        return ins
+
+    elif data.Reason == HANDLER_REASON_FORMAT:
+
+        return FormatFuncString(data, data.Instruction.OperandFormat, -1)
+
+    elif data.Reason == HANDLER_REASON_ASSEMBLE:
+
+        data.Instruction.OperandFormat = 'hhhS'
+
 def scp_create_chr_talk(data):
 
     if data.Reason == HANDLER_REASON_DISASM:
@@ -1404,6 +1460,48 @@ def scp_create_menu(data):
     elif data.Reason == HANDLER_REASON_ASSEMBLE:
 
         data.Instruction.OperandFormat = 'hhhcS'
+
+def scp_set_chr_name(data):
+
+    if data.Reason == HANDLER_REASON_DISASM:
+
+        fs = data.FileStream
+        ins = data.Instruction
+
+        ins.Operand = data.TableEntry.GetAllOperand('S', fs)
+
+        ins.OperandFormat = 'S'
+
+        return ins
+
+    elif data.Reason == HANDLER_REASON_FORMAT:
+
+        return FormatFuncString(data, data.Instruction.OperandFormat, -1)
+
+    elif data.Reason == HANDLER_REASON_ASSEMBLE:
+
+        data.Instruction.OperandFormat = 'S'
+
+def scp_set_chr_name_by_index(data):
+
+    if data.Reason == HANDLER_REASON_DISASM:
+
+        fs = data.FileStream
+        ins = data.Instruction
+
+        ins.Operand = data.TableEntry.GetAllOperand('WS', fs)
+
+        ins.OperandFormat = 'WS'
+
+        return ins
+
+    elif data.Reason == HANDLER_REASON_FORMAT:
+
+        return FormatFuncString(data, data.Instruction.OperandFormat, -1)
+
+    elif data.Reason == HANDLER_REASON_ASSEMBLE:
+
+        data.Instruction.OperandFormat = 'WS'
 
 def scp_76(data):
 
@@ -1613,6 +1711,10 @@ def scp_menu_cmd(data):
 
         return ins
 
+    elif data.Reason == HANDLER_REASON_FORMAT:
+
+        return FormatFuncString(data, data.Instruction.OperandFormat, -1)
+
     elif data.Reason == HANDLER_REASON_ASSEMBLE:
 
         data.Instruction.OperandFormat = 'BB' + getopr(data.Arguments[0])
@@ -1766,10 +1868,10 @@ edao_op_list = \
     inst(OP_52,                     NO_OPERAND,             0,                          scp_52),
     inst(TalkBegin,                 'W'),
     inst(TalkEnd,                   'W'),
-    inst(AnonymousTalk,             NO_OPERAND,             0,                          scp_anonymous_talk),
+    inst(AnonTalk,                  NO_OPERAND,             0,                          scp_anonymous_talk),
     inst(OP_56),
     inst(OP_57,                     'B'),
-    inst(MenuTitle,                 'hhhS'),
+    inst(MenuTitle,                 NO_OPERAND,             0,                          scp_create_menu_title),
     inst(CloseMessageWindow),
     inst(OP_5A),
     inst(SetMessageWindowPos,       'hhhh'),        # SetMessageWindowPos(x, y, -1, -1)
@@ -1778,7 +1880,7 @@ edao_op_list = \
     inst(Menu,                      NO_OPERAND,             0,                          scp_create_menu),
     inst(MenuEnd,                   'W'),
     inst(OP_60,                     'W'),
-    inst(SetChrName,                'S'),
+    inst(SetChrName,                NO_OPERAND,             0,                          scp_set_chr_name),
     inst(OP_62,                     'W'),
     inst(OP_63,                     'WLIBBLB'),
     inst(OP_64,                     'W'),
@@ -1818,7 +1920,7 @@ edao_op_list = \
     inst(OP_8B,                     'W'),
     inst(SetChrChipByIndex,         'WB'),
     inst(SetChrSubChip,             'WB'),
-    inst(OP_8E,                     'WS'),
+    inst(SetChrNameByIndex,         NO_OPERAND,             0,                          scp_set_chr_name_by_index),
     inst(SetChrPos,                 'WiiiH'),
     inst(OP_90,                     'Wiiih'),
     inst(TurnDirection,             'WWH'),

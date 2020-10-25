@@ -670,13 +670,13 @@ class ScenarioActorInfo:
 
     def param(self):
         p = '%d, %d, %d, %d, %d, %d, %d, 0x%04X, %d, %d, 0x%04X' % (
-                    LONG(self.TriggerX).value,
-                    LONG(self.TriggerZ).value,
-                    LONG(self.TriggerY).value,
-                    LONG(self.TriggerRange).value,
-                    LONG(self.ActorX).value,
-                    LONG(self.ActorZ).value,
-                    LONG(self.ActorY).value,
+                    ULONG(self.TriggerX).value,
+                    ULONG(self.TriggerZ).value,
+                    ULONG(self.TriggerY).value,
+                    ULONG(self.TriggerRange).value,
+                    ULONG(self.ActorX).value,
+                    ULONG(self.ActorZ).value,
+                    ULONG(self.ActorY).value,
 
                     USHORT(self.Flags).value,
                     USHORT(self.TalkScenaIndex).value,
@@ -689,13 +689,13 @@ class ScenarioActorInfo:
 
     def binary(self):
         return struct.pack('<lllllllHHHH',
-                    LONG(self.TriggerX).value,
-                    LONG(self.TriggerZ).value,
-                    LONG(self.TriggerY).value,
-                    LONG(self.TriggerRange).value,
-                    LONG(self.ActorX).value,
-                    LONG(self.ActorZ).value,
-                    LONG(self.ActorY).value,
+                    ULONG(self.TriggerX).value,
+                    ULONG(self.TriggerZ).value,
+                    ULONG(self.TriggerY).value,
+                    ULONG(self.TriggerRange).value,
+                    ULONG(self.ActorX).value,
+                    ULONG(self.ActorZ).value,
+                    ULONG(self.ActorY).value,
 
                     USHORT(self.Flags).value,
                     USHORT(self.TalkScenaIndex).value,
@@ -1460,15 +1460,24 @@ class ScenarioInfo:
         return '\r\n'.join(info)
 
 
-def procfile(file):
+def procfile(file, cp=None):
+    if cp:
+        edao.CODE_PAGE = cp
+        edao.edao_op_table.CodePage = cp
+    
     console.setTitle(os.path.basename(file))
-    print('disasm %s' % file)
+    #print('disasm %s' % file)
     scena = ScenarioInfo()
     
     scena.open(file)
-        
-    plog('SAVE %s' % file)   
-    scena.SaveToFile(file + '.py')
+    
+    outfile = file.partition(".")[0] + ".py"
+    
+    plog('SAVE %s' % outfile)   
+    
+    scena.SaveToFile(outfile, False)
+    
+    return outfile
 
 if __name__ == '__main__':
 #    iterlib.forEachFileMP(procfile, sys.argv[1:], '*.bin')

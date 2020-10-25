@@ -27,7 +27,7 @@ class ScenarioInfoPort(ScenarioInfo):
 
         self.ScpFunctionList    = []
 
-scena = ScenarioInfoPort()
+scena = None
 
 def SetCodePage(cp):
     global CODE_PAGE
@@ -36,6 +36,8 @@ def SetCodePage(cp):
     edao.edao_op_table.CodePage = cp
 
 def CreateScenaFile(FileName, MapName, Location, MapIndex, MapDefaultBGM, Flags, IncludeList, Unknown_4A, PreInitFunctionIndex, Unknown_51, InitData):
+    global scena
+    scena = ScenarioInfoPort()
     scena.MapName               = MapName
     scena.Location              = Location
     scena.MapIndex              = MapIndex
@@ -503,6 +505,6 @@ def SaveToFile():
     fs.write(scena.binary())
     fs.close()
 
-    print('done')
+    plog('done')
 
     #input()

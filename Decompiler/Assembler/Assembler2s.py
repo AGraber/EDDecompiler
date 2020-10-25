@@ -1,25 +1,13 @@
 from Base.BaseType import *
 from Assembler.InstructionTable import *
 
-class Log:
-    flog = sys.stdout
-
-    def OpenLog(path = 'log.txt'):
-        Log.flog = open(path, 'w')
-    def CloseLog():
-        Log.flog.close()
-
 def plog(*args):
-    # pass
-    print(*args)
-    Log.flog.write(*args)
-    Log.flog.write('\n')
+    pass
 
-plog = print
+#plog = plog
 
 offsetlist = {}
 disasmtbl = {}
-fuck = False
 
 class Disassembler:
 
@@ -143,7 +131,7 @@ class Disassembler:
 
             pos = fs.tell()
 
-            # print('%08X: ' % pos, end = '')
+            # plog('%08X: ' % pos, end = '')
             op = InstructionTable.GetOpCode(fs)
             
             if op not in InstructionTable:
@@ -245,9 +233,9 @@ class Disassembler:
     def DefaultFormatInstruction(self, data):
         inst = data.Instruction
         entry = data.TableEntry
-        print('inst',inst.OpCode,hex(inst.Offset),inst.Operand)
+        plog('inst',inst.OpCode,hex(inst.Offset),inst.Operand)
         opname = entry.OpName
-        print('opname', opname)
+        plog('opname', opname)
         oprlist = entry.FormatAllOperand(
                         BuildFormatOperandParameterList(
                             inst.OperandFormat,
@@ -381,12 +369,12 @@ class Disassembler:
             handlerdata.LabelMap        = LabelMap
             handlerdata.Format          = FormatInstructionWrapExport
 
-            #print('%08X' % inst.Offset)
+            #plog('%08X' % inst.Offset)
             #del disasmtbl[inst.Offset]
 
-            # print('%08X %02X: ' % (inst.Offset, inst.OpCode), end  = '')
+            # plog('%08X %02X: ' % (inst.Offset, inst.OpCode), end  = '')
             symbol = FormatInstructionWrap(handlerdata)
-            # print(symbol,'??')
+            # plog(symbol,'??')
 
             text += symbol
 
