@@ -85,7 +85,7 @@ def CreateScenaFile(FileName, MapName, Location, MapIndex, MapDefaultBGM, Flags,
     edao.edao_op_table.CodePage = cp
 
     if len(sys.argv) > start_argv:
-        FileName = sys.argv[start_argv] + '\\' + FileName
+        FileName = os.path.join(sys.argv[start_argv], FileName)
 
     scena.fs = fileio.FileStream(FileName, 'wb+')
     scena.fs.seek(0x94)
