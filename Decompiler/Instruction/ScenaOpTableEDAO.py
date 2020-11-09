@@ -489,17 +489,17 @@ class EDAOScenaInstructionTableEntry(InstructionTableEntry):
 
         def readstr():
             string = []
-            tmpstr = ''
+            buf = b''
 
             while True:
-                buf = fs.read(1)
+                buf += fs.read(1)
+                code = buf[-1]
 
-                if buf < b' ':
-                    if tmpstr != '':
-                        string.append(ScpString(SCPSTR_CODE_STRING, tmpstr.replace('\\', '\\\\')))
-                        tmpstr = ''
-
-                    code = struct.unpack('<B', buf)[0]
+                if code < 0x20:
+                    buf = buf[:-1]
+                    if len(buf) > 0:
+                        string.append(ScpString(SCPSTR_CODE_STRING, buf.decode(self.Container.CodePage).replace('\\', '\\\\')))
+                    buf = b''
 
                     if code == 0:
                         break
@@ -508,7 +508,7 @@ class EDAOScenaInstructionTableEntry(InstructionTableEntry):
 
                     if code == SCPSTR_CODE_COLOR:
 
-                        # dummy byte ?
+                        # color code
                         strobj.Value = fs.ReadByte()
 
                     elif code == SCPSTR_CODE_LINE_FEED or code == 0x0A:
@@ -528,6 +528,7 @@ class EDAOScenaInstructionTableEntry(InstructionTableEntry):
 
                     elif code == 0x05:
 
+                        # text no scroll in
                         pass
 
                     elif code == 0x06:
@@ -537,6 +538,7 @@ class EDAOScenaInstructionTableEntry(InstructionTableEntry):
 
                     elif code == 0x18:
 
+                        # unknown
                         pass
 
                     elif code == SCPSTR_CODE_ITEM:
@@ -547,13 +549,10 @@ class EDAOScenaInstructionTableEntry(InstructionTableEntry):
                     string.append(strobj)
 
                     continue
-
-                elif buf >= b'\x80':
-
-                    buf += fs.read(1)
-
-                tmpstr += buf.decode(self.Container.CodePage)
-
+                    
+            if len(buf) > 0:
+                string.append(ScpString(SCPSTR_CODE_STRING, buf.decode(self.Container.CodePage).replace('\\', '\\\\')))
+            
             return string
 
         oprtype = \
