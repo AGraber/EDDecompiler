@@ -688,7 +688,7 @@ class ScenarioActorInfo:
         return AdjustParam(p, space)
 
     def binary(self):
-        return struct.pack('<lllllllHHHH',
+        return struct.pack('<LLLLLLLHHHH',
                     ULONG(self.TriggerX).value,
                     ULONG(self.TriggerZ).value,
                     ULONG(self.TriggerY).value,
