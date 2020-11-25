@@ -94,7 +94,7 @@ InstructionNames[0x51]  = 'OP_51'
 InstructionNames[0x52]  = 'OP_52'
 InstructionNames[0x53]  = 'TalkBegin'
 InstructionNames[0x54]  = 'TalkEnd'
-InstructionNames[0x55]  = 'AnonTalk'
+InstructionNames[0x55]  = 'AnonymousTalk'
 InstructionNames[0x56]  = 'OP_56'
 InstructionNames[0x57]  = 'OP_57'
 InstructionNames[0x58]  = 'MenuTitle'
@@ -349,7 +349,14 @@ def FormatFuncString(data, oprfmt, mark_number = None):
             strlist = BuildStringListFromObjectList(ins.Operand[i])
             if not idcomm_set:
                 idcomm_set = True
-                idcomm = '    # TAG:%s_%02X' % (InstructionNames[data.Instruction.OpCode].upper(), data.Instruction.Offset)
+                tagname = InstructionNames[data.Instruction.OpCode]
+                if tagname == "AnonymousTalk":
+                    tagname = "AnonTalk"
+                elif tagname == "SetChrName":
+                    tagname = "ChrName"
+                elif tagname == "SetChrNameByIndex":
+                    tagname = "ChrNameIdx"
+                idcomm = '    # TAG:%s_%02X' % (tagname.upper(), data.Instruction.Offset)
                 txt.append(idcomm)
             
             if len(strlist) == 0:
@@ -1864,7 +1871,7 @@ edao_op_list = \
     inst(OP_52,                     NO_OPERAND,             0,                          scp_52),
     inst(TalkBegin,                 'W'),
     inst(TalkEnd,                   'W'),
-    inst(AnonTalk,                  NO_OPERAND,             0,                          scp_anonymous_talk),
+    inst(AnonymousTalk,             NO_OPERAND,             0,                          scp_anonymous_talk),
     inst(OP_56),
     inst(OP_57,                     'B'),
     inst(MenuTitle,                 NO_OPERAND,             0,                          scp_create_menu_title),
