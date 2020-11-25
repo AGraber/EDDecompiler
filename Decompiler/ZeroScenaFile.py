@@ -86,6 +86,7 @@ def CreateScenaFile(FileName, MapName, Location, MapIndex, MapDefaultBGM, Flags,
     if len(sys.argv) > start_argv:
         FileName = os.path.join(sys.argv[start_argv], FileName)
 
+    console.setTitle(os.path.basename(FileName))
     scena.fs = fileio.FileStream(FileName, 'wb+')
     scena.fs.seek(0x94)
 
