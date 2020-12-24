@@ -1,5 +1,5 @@
 from ZeroScenarioScript import *
-from Instruction.ScenaOpTableZero import *
+from Instruction.ScenaOpTableEDZero import *
 from GameData.ItemNameMap import *
 
 import importlib.machinery

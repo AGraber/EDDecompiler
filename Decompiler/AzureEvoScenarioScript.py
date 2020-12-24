@@ -1,6 +1,6 @@
 from Assembler.Assembler2s import *
-from Base.ZeroBase import *
-import Instruction.ScenaOpTableEDZero as edao
+from Base.EDAOSNBase import *
+import Instruction.ScenaOpTableEDAOEvo as edao
 
 import importlib.machinery
 import os
@@ -127,95 +127,95 @@ op count: 227
 '''
 
 
-NUMBER_OF_INCLUDE_FILE          = 6
+NUMBER_OF_INCLUDE_FILE = 6
 
-SCN_INFO_CHIP       = 0
-SCN_INFO_NPC        = 1
-SCN_INFO_MONSTER    = 2
-SCN_INFO_EVENT      = 3
-SCN_INFO_ACTOR      = 4
-SCN_INFO_MAXIMUM    = 5
+SCN_INFO_CHIP = 0
+SCN_INFO_NPC = 1
+SCN_INFO_MONSTER = 2
+SCN_INFO_EVENT = 3
+SCN_INFO_ACTOR = 4
+SCN_INFO_MAXIMUM = 5
 
 class ScenarioEntry:
-    def __init__(self, offset = 0, size = 0):
+    def __init__(self, offset=0, size=0):
         self.Offset = offset
         self.Size = size
 
 class ScenarioNpcInfo:
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             return
 
         # size = 0x1C
 
-        self.X                  = fs.ReadULong()
-        self.Z                  = fs.ReadULong()
-        self.Y                  = fs.ReadULong()
-        self.Direction          = fs.ReadUShort()   # 0 90 270 360
-        self.Unknown2           = fs.ReadUShort()
+        self.X = fs.ReadULong()
+        self.Z = fs.ReadULong()
+        self.Y = fs.ReadULong()
+        self.Direction = fs.ReadUShort()  # 0 90 270 360
+        self.Unknown2 = fs.ReadUShort()
 
-        self.ChipIndex          = fs.ReadByte()
-        self.Unknown_11         = fs.ReadByte()
-        self.NpcIndex           = fs.ReadByte()
-        self.Unknown_14         = fs.ReadByte()
+        self.ChipIndex = fs.ReadByte()
+        self.Unknown_11 = fs.ReadByte()
+        self.NpcIndex = fs.ReadByte()
+        self.Unknown_14 = fs.ReadByte()
 
-        self.InitScenaIndex     = fs.ReadByte()
-        self.InitFunctionIndex  = fs.ReadByte()
-        self.TalkScenaIndex     = fs.ReadByte()
-        self.TalkFunctionIndex  = fs.ReadByte()
+        self.InitScenaIndex = fs.ReadByte()
+        self.InitFunctionIndex = fs.ReadByte()
+        self.TalkScenaIndex = fs.ReadByte()
+        self.TalkFunctionIndex = fs.ReadByte()
 
-        self.Unknown4           = fs.ReadUShort()
-        self.Unknown5           = fs.ReadUShort()
+        self.Unknown4 = fs.ReadUShort()
+        self.Unknown5 = fs.ReadUShort()
 
     def __str__(self):
         return str(self.binary())
 
     def param(self):
         p = '%d, %d, %d, %d, %d, 0x%X, %d, %d, %d, %d, %d, %d, %d, %d, %d' % (
-                    LONG(self.X).value,
-                    LONG(self.Z).value,
-                    LONG(self.Y).value,
-                    LONG(self.Direction).value,
-                    LONG(self.Unknown2).value,
-                    ULONG(self.ChipIndex).value,
-                    LONG(self.Unknown_11).value,
-                    LONG(self.NpcIndex).value,
-                    LONG(self.Unknown_14).value,
-                    LONG(self.InitScenaIndex).value,
-                    LONG(self.InitFunctionIndex).value,
-                    LONG(self.TalkScenaIndex).value,
-                    LONG(self.TalkFunctionIndex).value,
-                    LONG(self.Unknown4).value,
-                    LONG(self.Unknown5).value
-                )
+            LONG(self.X).value,
+            LONG(self.Z).value,
+            LONG(self.Y).value,
+            LONG(self.Direction).value,
+            LONG(self.Unknown2).value,
+            ULONG(self.ChipIndex).value,
+            LONG(self.Unknown_11).value,
+            LONG(self.NpcIndex).value,
+            LONG(self.Unknown_14).value,
+            LONG(self.InitScenaIndex).value,
+            LONG(self.InitFunctionIndex).value,
+            LONG(self.TalkScenaIndex).value,
+            LONG(self.TalkFunctionIndex).value,
+            LONG(self.Unknown4).value,
+            LONG(self.Unknown5).value
+        )
 
         space = [9, 9, 9, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6]
         return AdjustParam(p, space)
 
     def binary(self):
         return struct.pack('<LLLHHBBBBBBBBHH',
-                    ULONG(self.X).value,
-                    ULONG(self.Z).value,
-                    ULONG(self.Y).value,
-                    ULONG(self.Direction).value,
-                    ULONG(self.Unknown2).value,
-                    ULONG(self.ChipIndex).value,
-                    ULONG(self.Unknown_11).value,
-                    ULONG(self.NpcIndex).value,
-                    ULONG(self.Unknown_14).value,
-                    ULONG(self.InitScenaIndex).value,
-                    ULONG(self.InitFunctionIndex).value,
-                    ULONG(self.TalkScenaIndex).value,
-                    ULONG(self.TalkFunctionIndex).value,
-                    ULONG(self.Unknown4).value,
-                    ULONG(self.Unknown5).value
-                )
+                           ULONG(self.X).value,
+                           ULONG(self.Z).value,
+                           ULONG(self.Y).value,
+                           ULONG(self.Direction).value,
+                           ULONG(self.Unknown2).value,
+                           ULONG(self.ChipIndex).value,
+                           ULONG(self.Unknown_11).value,
+                           ULONG(self.NpcIndex).value,
+                           ULONG(self.Unknown_14).value,
+                           ULONG(self.InitScenaIndex).value,
+                           ULONG(self.InitFunctionIndex).value,
+                           ULONG(self.TalkScenaIndex).value,
+                           ULONG(self.TalkFunctionIndex).value,
+                           ULONG(self.Unknown4).value,
+                           ULONG(self.Unknown5).value
+                           )
 
 class BattleSepith:
 
     # size = 7
 
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         self.Value = []
 
         if fs == None:
@@ -245,86 +245,86 @@ class BattleATBonus:
 
     # size = 0x10
 
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             return
 
-        self.Offset     = fs.tell()
+        self.Offset = fs.tell()
 
-        self.Nothing    = fs.ReadByte()
+        self.Nothing = fs.ReadByte()
         self.HP_HEAL_10 = fs.ReadByte()
         self.HP_HEAL_50 = fs.ReadByte()
         self.EP_HEAL_10 = fs.ReadByte()
         self.EP_HEAL_50 = fs.ReadByte()
         self.CP_HEAL_10 = fs.ReadByte()
         self.CP_HEAL_50 = fs.ReadByte()
-        self.SEPITH     = fs.ReadByte()
-        self.CRITICAL   = fs.ReadByte()
-        self.VANISH     = fs.ReadByte()
-        self.DEATH      = fs.ReadByte()
-        self.GUARD      = fs.ReadByte()
-        self.RUSH       = fs.ReadByte()
+        self.SEPITH = fs.ReadByte()
+        self.CRITICAL = fs.ReadByte()
+        self.VANISH = fs.ReadByte()
+        self.DEATH = fs.ReadByte()
+        self.GUARD = fs.ReadByte()
+        self.RUSH = fs.ReadByte()
         self.ARTS_GUARD = fs.ReadByte()
-        self.TEAMRUSH   = fs.ReadByte()
-        self.Unknown    = fs.ReadByte()
+        self.TEAMRUSH = fs.ReadByte()
+        self.Unknown = fs.ReadByte()
 
     def param(self):
         return '"ATBonus_%X", %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d' % (
-                    self.Offset,
-                    self.Nothing,
-                    self.HP_HEAL_10,
-                    self.HP_HEAL_50,
-                    self.EP_HEAL_10,
-                    self.EP_HEAL_50,
-                    self.CP_HEAL_10,
-                    self.CP_HEAL_50,
-                    self.SEPITH,
-                    self.CRITICAL,
-                    self.VANISH,
-                    self.DEATH,
-                    self.GUARD,
-                    self.RUSH,
-                    self.ARTS_GUARD,
-                    self.TEAMRUSH,
-                    self.Unknown
-                )
+            self.Offset,
+            self.Nothing,
+            self.HP_HEAL_10,
+            self.HP_HEAL_50,
+            self.EP_HEAL_10,
+            self.EP_HEAL_50,
+            self.CP_HEAL_10,
+            self.CP_HEAL_50,
+            self.SEPITH,
+            self.CRITICAL,
+            self.VANISH,
+            self.DEATH,
+            self.GUARD,
+            self.RUSH,
+            self.ARTS_GUARD,
+            self.TEAMRUSH,
+            self.Unknown
+        )
 
     def __str__(self):
         return str(self.binary())
 
     def binary(self):
         return struct.pack(
-                    '<' + 'B' * 0x10,
-                    self.Nothing,
-                    self.HP_HEAL_10,
-                    self.HP_HEAL_50,
-                    self.EP_HEAL_10,
-                    self.EP_HEAL_50,
-                    self.CP_HEAL_10,
-                    self.CP_HEAL_50,
-                    self.SEPITH,
-                    self.CRITICAL,
-                    self.VANISH,
-                    self.DEATH,
-                    self.GUARD,
-                    self.RUSH,
-                    self.ARTS_GUARD,
-                    self.TEAMRUSH,
-                    self.Unknown
-                )
+            '<' + 'B' * 0x10,
+            self.Nothing,
+            self.HP_HEAL_10,
+            self.HP_HEAL_50,
+            self.EP_HEAL_10,
+            self.EP_HEAL_50,
+            self.CP_HEAL_10,
+            self.CP_HEAL_50,
+            self.SEPITH,
+            self.CRITICAL,
+            self.VANISH,
+            self.DEATH,
+            self.GUARD,
+            self.RUSH,
+            self.ARTS_GUARD,
+            self.TEAMRUSH,
+            self.Unknown
+        )
 
 class BattleMonsterPostion:
 
     # size = 4
 
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             return
 
         self.Offset = fs.tell()
 
-        self.X      = fs.ReadByte()
-        self.Y      = fs.ReadByte()
+        self.X = fs.ReadByte()
+        self.Y = fs.ReadByte()
         self.Degree = fs.ReadUShort()
 
     def __str__(self):
@@ -340,7 +340,7 @@ class BattleMonsterInfo:
 
     # size = 0x2C
 
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             self.MsFileIndex = [BattleScriptFileIndex()] * 8
             return
@@ -351,11 +351,11 @@ class BattleMonsterInfo:
         for i in range(8):
             self.MsFileIndex.append(BattleScriptFileIndex(fs.ReadULong()))
 
-        self.PositionNormalOffset           = fs.ReadUShort()
-        self.PositionEnemyAdvantageOffset   = fs.ReadUShort()
-        self.BgmNormal                      = fs.ReadUShort()
-        self.BgmDanger                      = fs.ReadUShort()
-        self.ATBonusOffset                  = fs.ReadULong()
+        self.PositionNormalOffset = fs.ReadUShort()
+        self.PositionEnemyAdvantageOffset = fs.ReadUShort()
+        self.BgmNormal = fs.ReadUShort()
+        self.BgmDanger = fs.ReadUShort()
+        self.ATBonusOffset = fs.ReadULong()
 
         pos = fs.tell()
 
@@ -381,12 +381,12 @@ class BattleMonsterInfo:
             p += '%s, ' % name
 
         return p + '"MonsterBattlePostion_%X", "MonsterBattlePostion_%X", "%s", "%s", "ATBonus_%X"' % (
-                    self.PositionNormalOffset,
-                    self.PositionEnemyAdvantageOffset,
-                    BGMFileIndex(self.BgmNormal).Name(),
-                    BGMFileIndex(self.BgmDanger).Name(),
-                    self.ATBonusOffset
-                )
+            self.PositionNormalOffset,
+            self.PositionEnemyAdvantageOffset,
+            BGMFileIndex(self.BgmNormal).Name(),
+            BGMFileIndex(self.BgmDanger).Name(),
+            self.ATBonusOffset
+        )
 
     def binary(self):
         if len(self.MsFileIndex) != 8:
@@ -404,40 +404,40 @@ class ScenarioBattleInfo:
 
     def binary(self):
         return struct.pack(
-                    '<HHBBBBHHLLBBBB',
-                    self.Flags,
-                    self.Level,
-                    self.Unknown_04,
-                    self.Vision,
-                    self.MoveRange,
-                    self.CanMove,
-                    self.MoveSpeed,
-                    self.Unknown_0A,
-                    self.BattleMapOffset,
-                    self.SepithOffset,
-                    self.Probability[0],
-                    self.Probability[1],
-                    self.Probability[2],
-                    self.Probability[3]
-                )
+            '<HHBBBBHHLLBBBB',
+            self.Flags,
+            self.Level,
+            self.Unknown_04,
+            self.Vision,
+            self.MoveRange,
+            self.CanMove,
+            self.MoveSpeed,
+            self.Unknown_0A,
+            self.BattleMapOffset,
+            self.SepithOffset,
+            self.Probability[0],
+            self.Probability[1],
+            self.Probability[2],
+            self.Probability[3]
+        )
 
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             return
 
-        self.Offset             = fs.tell()
+        self.Offset = fs.tell()
 
-        self.Flags              = fs.ReadUShort()
-        self.Level              = fs.ReadUShort()
-        self.Unknown_04         = fs.ReadByte()
-        self.Vision             = fs.ReadByte()
-        self.MoveRange          = fs.ReadByte()
-        self.CanMove            = fs.ReadByte()
-        self.MoveSpeed          = fs.ReadUShort()
-        self.Unknown_0A         = fs.ReadUShort()
-        self.BattleMapOffset    = fs.ReadULong()
-        self.SepithOffset       = fs.ReadULong()
-        self.Probability        = [ fs.ReadByte(), fs.ReadByte(), fs.ReadByte(), fs.ReadByte() ]
+        self.Flags = fs.ReadUShort()
+        self.Level = fs.ReadUShort()
+        self.Unknown_04 = fs.ReadByte()
+        self.Vision = fs.ReadByte()
+        self.MoveRange = fs.ReadByte()
+        self.CanMove = fs.ReadByte()
+        self.MoveSpeed = fs.ReadUShort()
+        self.Unknown_0A = fs.ReadUShort()
+        self.BattleMapOffset = fs.ReadULong()
+        self.SepithOffset = fs.ReadULong()
+        self.Probability = [fs.ReadByte(), fs.ReadByte(), fs.ReadByte(), fs.ReadByte()]
 
         pos = fs.tell()
 
@@ -464,38 +464,38 @@ class ScenarioBattleInfo:
     def param(self):
         sepithfmt = '"Sepith_%X"' if self.Sepith != None else '0x%08X'
         return ('"BattleInfo_%X", 0x%04X, %d, %d, %d, %d, %d, %d, %d, "%s", ' + sepithfmt + ', %d, %d, %d, %d') % (
-                    ULONG(self.Offset).value,
-                    LONG(self.Flags).value,
-                    LONG(self.Level).value,
-                    LONG(self.Unknown_04).value,
-                    LONG(self.Vision).value,
-                    LONG(self.MoveRange).value,
-                    LONG(self.CanMove).value,
-                    LONG(self.MoveSpeed).value,
-                    LONG(self.Unknown_0A).value,
-                    self.BattleMap,
-                    ULONG(self.SepithOffset).value,
-                    LONG(self.Probability[0]).value,
-                    LONG(self.Probability[1]).value,
-                    LONG(self.Probability[2]).value,
-                    LONG(self.Probability[3]).value
-                )
+            ULONG(self.Offset).value,
+            LONG(self.Flags).value,
+            LONG(self.Level).value,
+            LONG(self.Unknown_04).value,
+            LONG(self.Vision).value,
+            LONG(self.MoveRange).value,
+            LONG(self.CanMove).value,
+            LONG(self.MoveSpeed).value,
+            LONG(self.Unknown_0A).value,
+            self.BattleMap,
+            ULONG(self.SepithOffset).value,
+            LONG(self.Probability[0]).value,
+            LONG(self.Probability[1]).value,
+            LONG(self.Probability[2]).value,
+            LONG(self.Probability[3]).value
+        )
 
 class ScenarioChipFrameInfo:
 
     # size = 0xC
 
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             return
 
         self.Offset = fs.tell()
 
-        self.Speed          = fs.ReadUShort()
-        self.Reserve        = fs.ReadByte()
-        self.SubChipCount   = fs.ReadByte()
-        self.SubChipIndex   = struct.unpack('<' + 'B' * self.SubChipCount, fs.read(self.SubChipCount))
-        
+        self.Speed = fs.ReadUShort()
+        self.Reserve = fs.ReadByte()
+        self.SubChipCount = fs.ReadByte()
+        self.SubChipIndex = struct.unpack('<' + 'B' * self.SubChipCount, fs.read(self.SubChipCount))
+
         if self.SubChipCount != 8:
             fs.seek(8 - self.SubChipCount, io.SEEK_CUR)
 
@@ -521,22 +521,22 @@ class ScenarioChipFrameInfo:
         return buf
 
 class ScenarioMonsterInfo:
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             return
 
         # size = 0x20
 
-        self.X                      = fs.ReadULong()
-        self.Z                      = fs.ReadULong()
-        self.Y                      = fs.ReadULong()
-        self.Unknown_0C             = fs.ReadULong()
-        self.BattleInfoOffset       = fs.ReadUShort()
-        self.Unknown_12             = fs.ReadUShort()
-        self.ChipIndex              = fs.ReadUShort()
-        self.Unknown_16             = fs.ReadUShort()
-        self.StandFrameInfoIndex    = fs.ReadULong()
-        self.MoveFrameInfoIndex     = fs.ReadULong()
+        self.X = fs.ReadULong()
+        self.Z = fs.ReadULong()
+        self.Y = fs.ReadULong()
+        self.Unknown_0C = fs.ReadULong()
+        self.BattleInfoOffset = fs.ReadUShort()
+        self.Unknown_12 = fs.ReadUShort()
+        self.ChipIndex = fs.ReadUShort()
+        self.Unknown_16 = fs.ReadUShort()
+        self.StandFrameInfoIndex = fs.ReadULong()
+        self.MoveFrameInfoIndex = fs.ReadULong()
 
         pos = fs.tell()
         fs.seek(self.BattleInfoOffset)
@@ -548,80 +548,80 @@ class ScenarioMonsterInfo:
 
     def param(self):
         p = '%d, %d, %d, 0x%X, "BattleInfo_%X", %d, %d, 0x%X, %d, %d' % (
-                    LONG(self.X).value,
-                    LONG(self.Y).value,
-                    LONG(self.Z).value,
-                    ULONG(self.Unknown_0C).value,
-                    ULONG(self.BattleInfoOffset).value,
-                    LONG(self.Unknown_12).value,
-                    LONG(self.ChipIndex).value,
-                    USHORT(self.Unknown_16).value,
-                    LONG(self.StandFrameInfoIndex).value,
-                    LONG(self.MoveFrameInfoIndex).value
-                )
+            LONG(self.X).value,
+            LONG(self.Y).value,
+            LONG(self.Z).value,
+            ULONG(self.Unknown_0C).value,
+            ULONG(self.BattleInfoOffset).value,
+            LONG(self.Unknown_12).value,
+            LONG(self.ChipIndex).value,
+            USHORT(self.Unknown_16).value,
+            LONG(self.StandFrameInfoIndex).value,
+            LONG(self.MoveFrameInfoIndex).value
+        )
 
         space = [9, 9, 9, strlen('BattleInfo') + 4, 5, 5, 5, 4, 4]
         return AdjustParam(p, space)
 
     def binary(self):
         return struct.pack('<LLLLHHHHLL',
-                    ULONG(self.X).value,
-                    ULONG(self.Y).value,
-                    ULONG(self.Z).value,
-                    ULONG(self.Unknown_0C).value,
-                    ULONG(self.BattleInfoOffset).value,
-                    ULONG(self.Unknown_12).value,
-                    ULONG(self.ChipIndex).value,
-                    ULONG(self.Unknown_16).value,
-                    ULONG(self.StandFrameInfoIndex).value,
-                    ULONG(self.MoveFrameInfoIndex).value
-                )
+                           ULONG(self.X).value,
+                           ULONG(self.Y).value,
+                           ULONG(self.Z).value,
+                           ULONG(self.Unknown_0C).value,
+                           ULONG(self.BattleInfoOffset).value,
+                           ULONG(self.Unknown_12).value,
+                           ULONG(self.ChipIndex).value,
+                           ULONG(self.Unknown_16).value,
+                           ULONG(self.StandFrameInfoIndex).value,
+                           ULONG(self.MoveFrameInfoIndex).value
+                           )
 
 class ScenarioEventInfo:
     # 0x60 bytes
 
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             return
 
-        self.X              = fs.ReadFloat()                # 0x00
-        self.Y              = fs.ReadFloat()                # 0x04
-        self.Z              = fs.ReadFloat()                # 0x08
-        self.Range          = fs.ReadFloat()                # 0x0C
+        self.X = fs.ReadFloat()  # 0x00
+        self.Y = fs.ReadFloat()  # 0x04
+        self.Z = fs.ReadFloat()  # 0x08
+        self.Range = fs.ReadFloat()  # 0x0C
 
         self.UnknownFloat_10 = [0] * 0x10
         for i in range(len(self.UnknownFloat_10)):
-            self.UnknownFloat_10[i] = fs.ReadFloat()        # 0x10 - 0x4C
+            self.UnknownFloat_10[i] = fs.ReadFloat()  # 0x10 - 0x4C
 
-        self.Flags          = fs.ReadUShort()       # 0x50
-        self.ScenaIndex     = fs.ReadUShort()       # 0x52
-        self.FunctionIndex  = fs.ReadUShort()       # 0x54
-        self.Reserve        = fs.read(0xA)        # 0x56
+        self.Flags = fs.ReadUShort()  # 0x50
+        self.ScenaIndex = fs.ReadUShort()  # 0x52
+        self.FunctionIndex = fs.ReadUShort()  # 0x54
+        self.Reserve = fs.read(0xA)  # 0x56
 
         if self.Reserve != b'\x00' * len(self.Reserve): bp()
 
-    #def __str__(self):
+    # def __str__(self):
     #    return str(self.Binary)
 
     def param(self):
-        #x = str(self.X)
-        #z = str(self.Z)
-        #y = str(self.Y)
-        #rng = str(self.Range)
-        #maxlen = max(len(x), len(z))
-        #maxlen = max(maxlen, len(y))
-        #maxlen = max(maxlen, len(rng))
+        # x = str(self.X)
+        # z = str(self.Z)
+        # y = str(self.Y)
+        # rng = str(self.Range)
+        # maxlen = max(len(x), len(z))
+        # maxlen = max(maxlen, len(y))
+        # maxlen = max(maxlen, len(rng))
 
         p = '0x%04X, %d, %d, %s, %s, %s, %s, ' % (
-                    self.Flags,
-                    self.ScenaIndex,
-                    self.FunctionIndex,
+            self.Flags,
+            self.ScenaIndex,
+            self.FunctionIndex,
 
-                    self.X,
-                    self.Y,
-                    self.Z,
-                    self.Range,
-                )
+            self.X,
+            self.Y,
+            self.Z,
+            self.Range,
+        )
 
         floats = ''
         for v in self.UnknownFloat_10:
@@ -636,10 +636,10 @@ class ScenarioEventInfo:
 
     def binary(self):
         p = struct.pack(
-                '<ffff' + 'f' * len(self.UnknownFloat_10),
-                self.X, self.Y, self.Z, self.Range,
-                *self.UnknownFloat_10
-            )
+            '<ffff' + 'f' * len(self.UnknownFloat_10),
+            self.X, self.Y, self.Z, self.Range,
+            *self.UnknownFloat_10
+        )
 
         data = struct.pack('<HHH', self.Flags, self.ScenaIndex, self.FunctionIndex)
 
@@ -647,75 +647,75 @@ class ScenarioEventInfo:
         return bin + b'\x00' * (0x60 - len(bin))
 
 class ScenarioActorInfo:
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             return
 
         # size = 0x24
 
-        self.TriggerX           = fs.ReadULong()
-        self.TriggerZ           = fs.ReadULong()
-        self.TriggerY           = fs.ReadULong()
-        self.TriggerRange       = fs.ReadULong()
-        self.ActorX             = fs.ReadULong()
-        self.ActorZ             = fs.ReadULong()
-        self.ActorY             = fs.ReadULong()
-        self.Flags              = fs.ReadUShort()
-        self.TalkScenaIndex     = fs.ReadUShort()
-        self.TalkFunctionIndex  = fs.ReadUShort()
-        self.Unknown_22         = fs.ReadUShort()
+        self.TriggerX = fs.ReadULong()
+        self.TriggerZ = fs.ReadULong()
+        self.TriggerY = fs.ReadULong()
+        self.TriggerRange = fs.ReadULong()
+        self.ActorX = fs.ReadULong()
+        self.ActorZ = fs.ReadULong()
+        self.ActorY = fs.ReadULong()
+        self.Flags = fs.ReadUShort()
+        self.TalkScenaIndex = fs.ReadUShort()
+        self.TalkFunctionIndex = fs.ReadUShort()
+        self.Unknown_22 = fs.ReadUShort()
 
     def __str__(self):
         return str(self.Binary)
 
     def param(self):
         p = '%d, %d, %d, %d, %d, %d, %d, 0x%04X, %d, %d, 0x%04X' % (
-                    ULONG(self.TriggerX).value,
-                    ULONG(self.TriggerZ).value,
-                    ULONG(self.TriggerY).value,
-                    ULONG(self.TriggerRange).value,
-                    ULONG(self.ActorX).value,
-                    ULONG(self.ActorZ).value,
-                    ULONG(self.ActorY).value,
+            ULONG(self.TriggerX).value,
+            ULONG(self.TriggerZ).value,
+            ULONG(self.TriggerY).value,
+            ULONG(self.TriggerRange).value,
+            ULONG(self.ActorX).value,
+            ULONG(self.ActorZ).value,
+            ULONG(self.ActorY).value,
 
-                    USHORT(self.Flags).value,
-                    USHORT(self.TalkScenaIndex).value,
-                    USHORT(self.TalkFunctionIndex).value,
-                    USHORT(self.Unknown_22).value,
-                )
+            USHORT(self.Flags).value,
+            USHORT(self.TalkScenaIndex).value,
+            USHORT(self.TalkFunctionIndex).value,
+            USHORT(self.Unknown_22).value,
+        )
 
         space = [9, 9, 9, 9, 9, 9, 9, 4, 4, 4, 4]
         return AdjustParam(p, space)
 
     def binary(self):
         return struct.pack('<LLLLLLLHHHH',
-                    ULONG(self.TriggerX).value,
-                    ULONG(self.TriggerZ).value,
-                    ULONG(self.TriggerY).value,
-                    ULONG(self.TriggerRange).value,
-                    ULONG(self.ActorX).value,
-                    ULONG(self.ActorZ).value,
-                    ULONG(self.ActorY).value,
+                           ULONG(self.TriggerX).value,
+                           ULONG(self.TriggerZ).value,
+                           ULONG(self.TriggerY).value,
+                           ULONG(self.TriggerRange).value,
+                           ULONG(self.ActorX).value,
+                           ULONG(self.ActorZ).value,
+                           ULONG(self.ActorY).value,
 
-                    USHORT(self.Flags).value,
-                    USHORT(self.TalkScenaIndex).value,
-                    USHORT(self.TalkFunctionIndex).value,
-                    USHORT(self.Unknown_22).value
-                )
+                           USHORT(self.Flags).value,
+                           USHORT(self.TalkScenaIndex).value,
+                           USHORT(self.TalkFunctionIndex).value,
+                           USHORT(self.Unknown_22).value
+                           )
 
 class ScenarioPlaceNameInfo:
 
     # size = 0x14
 
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         if fs == None:
             return
 
-        self.X          = fs.ReadFloat()
-        self.Z          = fs.ReadFloat()
-        self.Y          = fs.ReadFloat()
-        self.Flags1     = fs.ReadUShort()
-        self.Flags2     = fs.ReadUShort()
+        self.X = fs.ReadFloat()
+        self.Z = fs.ReadFloat()
+        self.Y = fs.ReadFloat()
+        self.Flags1 = fs.ReadUShort()
+        self.Flags2 = fs.ReadUShort()
         self.NameOffset = fs.ReadULong()
 
         pos = fs.tell()
@@ -736,7 +736,7 @@ class ScenarioInitData:
 
     # size = 0x40
 
-    def __init__(self, fs = None):
+    def __init__(self, fs=None):
         self.PackFormat = '<iiiiiiiiHHHHiiiHHHHBBBB'
 
         if fs == None:
@@ -745,86 +745,86 @@ class ScenarioInitData:
         if IsTupleOrList(fs):
             return self.__init__(fileio.FileStream(struct.pack(self.PackFormat, *fs)))
 
-        self.Unknown_00             = fs.ReadLong()    # 0x00
-        self.Unknown_04             = fs.ReadLong()    # 0x04
-        self.Unknown_08             = fs.ReadLong()    # 0x08
-        self.Unknown_0C             = fs.ReadLong()    # 0x0C
-        self.Unknown_10             = fs.ReadLong()    # 0x10
-        self.Unknown_14             = fs.ReadLong()    # 0x14
-        self.Unknown_18             = fs.ReadLong()    # 0x18
-        self.Unknown_1C             = fs.ReadLong()    # 0x1C
-        self.Unknown_20             = fs.ReadUShort()   # 0x20
-        self.Unknown_22             = fs.ReadUShort()   # 0x22
-        self.Unknown_24             = fs.ReadUShort()   # 0x24
-        self.Unknown_26             = fs.ReadUShort()   # 0x26
-        self.Unknown_28             = fs.ReadLong()    # 0x28
-        self.Unknown_2C             = fs.ReadLong()    # 0x2C
-        self.Unknown_30             = fs.ReadLong()    # 0x30
-        self.Unknown_34             = fs.ReadUShort()   # 0x34
-        self.Unknown_36             = fs.ReadUShort()   # 0x36
-        self.Flags                  = fs.ReadUShort()   # 0x38
-        self.Unknown_3A             = fs.ReadUShort()   # 0x3A
+        self.Unknown_00 = fs.ReadLong()  # 0x00
+        self.Unknown_04 = fs.ReadLong()  # 0x04
+        self.Unknown_08 = fs.ReadLong()  # 0x08
+        self.Unknown_0C = fs.ReadLong()  # 0x0C
+        self.Unknown_10 = fs.ReadLong()  # 0x10
+        self.Unknown_14 = fs.ReadLong()  # 0x14
+        self.Unknown_18 = fs.ReadLong()  # 0x18
+        self.Unknown_1C = fs.ReadLong()  # 0x1C
+        self.Unknown_20 = fs.ReadUShort()  # 0x20
+        self.Unknown_22 = fs.ReadUShort()  # 0x22
+        self.Unknown_24 = fs.ReadUShort()  # 0x24
+        self.Unknown_26 = fs.ReadUShort()  # 0x26
+        self.Unknown_28 = fs.ReadLong()  # 0x28
+        self.Unknown_2C = fs.ReadLong()  # 0x2C
+        self.Unknown_30 = fs.ReadLong()  # 0x30
+        self.Unknown_34 = fs.ReadUShort()  # 0x34
+        self.Unknown_36 = fs.ReadUShort()  # 0x36
+        self.Flags = fs.ReadUShort()  # 0x38
+        self.Unknown_3A = fs.ReadUShort()  # 0x3A
 
-        self.InitScenaIndex         = fs.ReadByte()     # 0x3C
-        self.InitFunctionIndex      = fs.ReadByte()     # 0x3D
-        self.EntryScenaIndex        = fs.ReadByte()     # 0x3E
-        self.EntryFunctionIndex     = fs.ReadByte()     # 0x3F
+        self.InitScenaIndex = fs.ReadByte()  # 0x3C
+        self.InitFunctionIndex = fs.ReadByte()  # 0x3D
+        self.EntryScenaIndex = fs.ReadByte()  # 0x3E
+        self.EntryFunctionIndex = fs.ReadByte()  # 0x3F
 
     def param(self):
         p = ('%d, ' * 23) % (
-                self.Unknown_00,
-                self.Unknown_04,
-                self.Unknown_08,
-                self.Unknown_0C,
-                self.Unknown_10,
-                self.Unknown_14,
-                self.Unknown_18,
-                self.Unknown_1C,
-                self.Unknown_20,
-                self.Unknown_22,
-                self.Unknown_24,
-                self.Unknown_26,
-                self.Unknown_28,
-                self.Unknown_2C,
-                self.Unknown_30,
-                self.Unknown_34,
-                self.Unknown_36,
-                self.Flags,
-                self.Unknown_3A,
-                self.InitScenaIndex,
-                self.InitFunctionIndex,
-                self.EntryScenaIndex,
-                self.EntryFunctionIndex,
-            )
+            self.Unknown_00,
+            self.Unknown_04,
+            self.Unknown_08,
+            self.Unknown_0C,
+            self.Unknown_10,
+            self.Unknown_14,
+            self.Unknown_18,
+            self.Unknown_1C,
+            self.Unknown_20,
+            self.Unknown_22,
+            self.Unknown_24,
+            self.Unknown_26,
+            self.Unknown_28,
+            self.Unknown_2C,
+            self.Unknown_30,
+            self.Unknown_34,
+            self.Unknown_36,
+            self.Flags,
+            self.Unknown_3A,
+            self.InitScenaIndex,
+            self.InitFunctionIndex,
+            self.EntryScenaIndex,
+            self.EntryFunctionIndex,
+        )
 
         return p[:-2]
 
     def binary(self):
         bin = struct.pack(self.PackFormat,
-                self.Unknown_00,
-                self.Unknown_04,
-                self.Unknown_08,
-                self.Unknown_0C,
-                self.Unknown_10,
-                self.Unknown_14,
-                self.Unknown_18,
-                self.Unknown_1C,
-                self.Unknown_20,
-                self.Unknown_22,
-                self.Unknown_24,
-                self.Unknown_26,
-                self.Unknown_28,
-                self.Unknown_2C,
-                self.Unknown_30,
-                self.Unknown_34,
-                self.Unknown_36,
-                self.Flags,
-                self.Unknown_3A,
-                self.InitScenaIndex,
-                self.InitFunctionIndex,
-                self.EntryScenaIndex,
-                self.EntryFunctionIndex
-            )
+                          self.Unknown_00,
+                          self.Unknown_04,
+                          self.Unknown_08,
+                          self.Unknown_0C,
+                          self.Unknown_10,
+                          self.Unknown_14,
+                          self.Unknown_18,
+                          self.Unknown_1C,
+                          self.Unknown_20,
+                          self.Unknown_22,
+                          self.Unknown_24,
+                          self.Unknown_26,
+                          self.Unknown_28,
+                          self.Unknown_2C,
+                          self.Unknown_30,
+                          self.Unknown_34,
+                          self.Unknown_36,
+                          self.Flags,
+                          self.Unknown_3A,
+                          self.InitScenaIndex,
+                          self.InitFunctionIndex,
+                          self.EntryScenaIndex,
+                          self.EntryFunctionIndex
+                          )
 
         return bin
 
@@ -833,39 +833,39 @@ class ScenarioInfo:
     def __init__(self):
         # file header
 
-        self.MapName                    = ''
-        self.Location                   = ''
-        self.MapIndex                   = 0
-        self.MapDefaultBGM              = -1
-        self.Flags                      = 0
-        self.IncludedScenario           = []
-        self.StringTableOffset          = 0
-        self.ScnInfoOffset              = [0] * SCN_INFO_MAXIMUM
-        self.ScenaFunctionTable         = ScenarioEntry()
-        self.ChipFrameInfoOffset        = 0
-        self.PlaceNameOffset            = 0
-        self.PlaceNameNumber            = 0
-        self.PreInitFunctionIndex       = 0
-        self.ScnInfoNumber              = [0] * SCN_INFO_MAXIMUM
-        self.Unknown_51                 = b''
-        self.InitData                   = ScenarioInitData()
+        self.MapName = ''
+        self.Location = ''
+        self.MapIndex = 0
+        self.MapDefaultBGM = -1
+        self.Flags = 0
+        self.IncludedScenario = []
+        self.StringTableOffset = 0
+        self.ScnInfoOffset = [0] * SCN_INFO_MAXIMUM
+        self.ScenaFunctionTable = ScenarioEntry()
+        self.ChipFrameInfoOffset = 0
+        self.PlaceNameOffset = 0
+        self.PlaceNameNumber = 0
+        self.PreInitFunctionIndex = 0
+        self.ScnInfoNumber = [0] * SCN_INFO_MAXIMUM
+        self.Unknown_51 = b''
+        self.InitData = ScenarioInitData()
 
         # file header end
 
-        self.ScenaFunctions     = []
-        self.PlaceName          = []
-        self.ChipFrameInfo      = []
-        self.StringTable        = []
-        self.ScnInfo            = []
-        self.CodeBlocks         = []
-        self.BattleInfoRefs     = []
+        self.ScenaFunctions = []
+        self.PlaceName = []
+        self.ChipFrameInfo = []
+        self.StringTable = []
+        self.ScnInfo = []
+        self.CodeBlocks = []
+        self.BattleInfoRefs = []
 
-        self.GlobalLabelTable   = {}
+        self.GlobalLabelTable = {}
 
         for i in range(SCN_INFO_MAXIMUM):
             self.ScnInfo.append([])
-            #self.ScnInfoOffset.append(0)
-            #self.ScnInfoNumber.append(0)
+            # self.ScnInfoOffset.append(0)
+            # self.ScnInfoNumber.append(0)
 
     def binary(self):
         MapName = self.MapName.encode(edao.CODE_PAGE)
@@ -909,20 +909,20 @@ class ScenarioInfo:
         Information = self.InitData.binary()
 
         return MapName + \
-                Location + \
-                MapIndex + MapDefaultBGM + \
-                Flags + \
-                IncludedScenario + \
-                StringTableOffset + \
-                ScnInfoOffset + \
-                ScenaFunctionTable + \
-                ChipFrameInfoOffset + \
-                PlaceNameOffset + \
-                PlaceNameNumber + \
-                PreInitFunctionIndex + \
-                ScnInfoNumber + \
-                Unknown_51 + \
-                Information
+               Location + \
+               MapIndex + MapDefaultBGM + \
+               Flags + \
+               IncludedScenario + \
+               StringTableOffset + \
+               ScnInfoOffset + \
+               ScenaFunctionTable + \
+               ChipFrameInfoOffset + \
+               PlaceNameOffset + \
+               PlaceNameNumber + \
+               PreInitFunctionIndex + \
+               ScnInfoNumber + \
+               Unknown_51 + \
+               Information
 
     def open(self, scenafile):
 
@@ -930,28 +930,28 @@ class ScenarioInfo:
 
         # file header
 
-        self.MapName                    = fs.read(0xA).decode(edao.CODE_PAGE).split('\x00', 1)[0]
-        self.Location                   = fs.read(0xA).decode(edao.CODE_PAGE).split('\x00', 1)[0]
-        self.MapIndex                   = fs.ReadUShort()
-        self.MapDefaultBGM              = BGMFileIndex(fs.ReadShort())
-        self.Flags                      = fs.ReadULong()
-        self.IncludedScenario           = list(struct.unpack('<' + 'I' * NUMBER_OF_INCLUDE_FILE, fs.read(NUMBER_OF_INCLUDE_FILE * 4)))
-        self.StringTableOffset          = fs.ReadULong()
-        self.ScnInfoOffset              = list(struct.unpack('<' + 'H' * SCN_INFO_MAXIMUM, fs.read(SCN_INFO_MAXIMUM * 2)))
-        self.ScenaFunctionTable         = ScenarioEntry(fs.ReadUShort(), fs.ReadUShort())
-        self.ChipFrameInfoOffset        = fs.ReadUShort()
-        self.PlaceNameOffset            = fs.ReadUShort()
-        self.PlaceNameNumber            = fs.ReadByte()
-        self.PreInitFunctionIndex       = fs.ReadByte()
-        self.ScnInfoNumber              = list(struct.unpack('<' + 'B' * SCN_INFO_MAXIMUM, fs.read(SCN_INFO_MAXIMUM * 1)))
-        self.Unknown_51                 = fs.read(3)
-        self.InitData                   = ScenarioInitData(fs)
+        self.MapName = fs.read(0xA).decode(edao.CODE_PAGE).split('\x00', 1)[0]
+        self.Location = fs.read(0xA).decode(edao.CODE_PAGE).split('\x00', 1)[0]
+        self.MapIndex = fs.ReadUShort()
+        self.MapDefaultBGM = BGMFileIndex(fs.ReadShort())
+        self.Flags = fs.ReadULong()
+        self.IncludedScenario = list(struct.unpack('<' + 'I' * NUMBER_OF_INCLUDE_FILE, fs.read(NUMBER_OF_INCLUDE_FILE * 4)))
+        self.StringTableOffset = fs.ReadULong()
+        self.ScnInfoOffset = list(struct.unpack('<' + 'H' * SCN_INFO_MAXIMUM, fs.read(SCN_INFO_MAXIMUM * 2)))
+        self.ScenaFunctionTable = ScenarioEntry(fs.ReadUShort(), fs.ReadUShort())
+        self.ChipFrameInfoOffset = fs.ReadUShort()
+        self.PlaceNameOffset = fs.ReadUShort()
+        self.PlaceNameNumber = fs.ReadByte()
+        self.PreInitFunctionIndex = fs.ReadByte()
+        self.ScnInfoNumber = list(struct.unpack('<' + 'B' * SCN_INFO_MAXIMUM, fs.read(SCN_INFO_MAXIMUM * 1)))
+        self.Unknown_51 = fs.read(3)
+        self.InitData = ScenarioInitData(fs)
 
         self.IncludedScenario.index(0xFFFFFFFF)
 
         # file header end
 
-        #if self.PlaceNameOffset != 0: raise Exception('not implemented')
+        # if self.PlaceNameOffset != 0: raise Exception('not implemented')
 
         self.InitScenaInfo(fs)
         self.InitOtherInfo(fs)
@@ -989,13 +989,13 @@ class ScenarioInfo:
 
     def InitScenaInfo(self, fs):
         ScnInfoTypes = \
-        [
-            ScenarioChipInfo,
-            ScenarioNpcInfo,
-            ScenarioMonsterInfo,
-            ScenarioEventInfo,
-            ScenarioActorInfo,
-        ]
+            [
+                ScenarioChipInfo,
+                ScenarioNpcInfo,
+                ScenarioMonsterInfo,
+                ScenarioEventInfo,
+                ScenarioActorInfo,
+            ]
 
         for i in range(len(self.ScnInfoOffset)):
             fs.seek(self.ScnInfoOffset[i])
@@ -1012,14 +1012,13 @@ class ScenarioInfo:
         fs.seek(self.ScenaFunctionTable.Offset)
         self.ScenaFunctions = list(struct.unpack('<' + 'I' * int(self.ScenaFunctionTable.Size / 4), fs.read(self.ScenaFunctionTable.Size)))
 
-
         ChipFrameInfoLast = self.ChipFrameInfoOffset
         for monster in self.ScnInfo[SCN_INFO_MONSTER]:
             ChipFrameInfoLast = max(ChipFrameInfoLast, max(monster.StandFrameInfoIndex, monster.MoveFrameInfoIndex))
 
         fs.seek(self.ChipFrameInfoOffset)
         self.ChipFrameInfo = []
-        
+
         while fs.tell() < self.ScenaFunctionTable.Offset:
             self.ChipFrameInfo.append(ScenarioChipFrameInfo(fs))
 
@@ -1032,7 +1031,7 @@ class ScenarioInfo:
 
         stringtable = buf.decode(edao.CODE_PAGE).rstrip('\x00').split('\x00')
         for string in stringtable:
-            #if string in self.StringTable: continue
+            # if string in self.StringTable: continue
             self.StringTable.append(string)
 
     def DiasmInstructionCallback(self, data):
@@ -1057,29 +1056,27 @@ class ScenarioInfo:
         index = -1
         codeblocks = []
         blockoffsetmap = {}
-        
-        
         for func in self.ScenaFunctions:
             index += 1
             if func in blockoffsetmap:
                 codeblocks.append(blockoffsetmap[func])
                 continue
-            
+
             fs.seek(func)
 
             data = Disassembler.DisasmData()
             data.Stream = fs
             data.GlobalLabelTable = self.GlobalLabelTable
-            
+
             block = disasm.DisasmBlock2(data)
 
             block.Name = 'Function_%d_%X' % (index, block.Offset)
             codeblocks.append(block)
 
             blockoffsetmap[func] = block
-        
-        #for i in range(fs.size()): if i not in offsetlist: print('%X' % i)
-        #input()
+
+        # for i in range(fs.size()): if i not in offsetlist: print('%X' % i)
+        # input()
 
         return codeblocks
 
@@ -1098,7 +1095,6 @@ class ScenarioInfo:
 
         edao.edao_op_table.FunctionLabelList = self.GenerateFunctionLabelList(self.CodeBlocks)
         disasm = Disassembler(edao.edao_op_table, self.FormatInstructionCallback)
-
         blocks = []
         blockoffsetmap = {}
 
@@ -1112,20 +1108,19 @@ class ScenarioInfo:
 
             data.Block = block
             data.GlobalLabelTable = self.GlobalLabelTable
-
             blocks.append(['def %s(): pass' % block.Name])
             blocks.append(disasm.FormatCodeBlock2(data))
 
-        #for x in disasmtbl: print('%08X' % x)
-        #input()
+        # for x in disasmtbl: print('%08X' % x)
+        # input()
 
         return blocks
 
     def GenerateSingleBattleInfo(self, btinfo, offsetmap):
         battleinfolines = []
-        sepithlines     = []
-        monposlines     = []
-        atbonuslines    = []
+        sepithlines = []
+        monposlines = []
+        atbonuslines = []
 
         if btinfo.Offset in offsetmap:
             return (battleinfolines, sepithlines, monposlines, atbonuslines)
@@ -1178,9 +1173,9 @@ class ScenarioInfo:
 
     def GenerateBattleInfo(self):
         battleinfolines = []
-        sepithlines     = []
-        monposlines     = []
-        atbonuslines    = []
+        sepithlines = []
+        monposlines = []
+        atbonuslines = []
 
         btcount = 0
 
@@ -1193,9 +1188,9 @@ class ScenarioInfo:
             r = self.GenerateSingleBattleInfo(btinfo, offsetmap)
 
             battleinfolines += r[0]
-            sepithlines     += r[1]
-            monposlines     += r[2]
-            atbonuslines    += r[3]
+            sepithlines += r[1]
+            monposlines += r[2]
+            atbonuslines += r[3]
 
         if len(self.BattleInfoRefs) != 0:
             battleinfolines.append('# event battle count: %d' % len(self.BattleInfoRefs))
@@ -1204,9 +1199,9 @@ class ScenarioInfo:
             for btinfo in self.BattleInfoRefs:
                 r = self.GenerateSingleBattleInfo(btinfo, offsetmap)
                 battleinfolines += r[0]
-                sepithlines     += r[1]
-                monposlines     += r[2]
-                atbonuslines    += r[3]
+                sepithlines += r[1]
+                monposlines += r[2]
+                atbonuslines += r[3]
 
         if len(atbonuslines) != 0:
             atbonuslines += ['']
@@ -1250,17 +1245,18 @@ class ScenarioInfo:
         mapname = mapname if mapname != '' else 'MapIndex'
 
         hdr = []
-        hdr.append('from ZeroScenarioHelper import *')
+        hdr.append('from ScenarioHelper import *')
         hdr.append('')
-        hdr.append('SetCodePage("%s")'                          % edao.CODE_PAGE)
+        hdr.append('SetCodePage("%s")' % edao.CODE_PAGE)
+
         hdr.append('')
         hdr.append('CreateScenaFile(')
-        hdr.append('    "%s",                # FileName'        % filename)
-        hdr.append('    "%s",                    # MapName'     % self.MapName)
-        hdr.append('    "%s",                    # Location'    % self.Location)
-        hdr.append('    0x%04X,                     # %s'       % (self.MapIndex, mapname))
-        hdr.append('    %s,'                                    % self.MapDefaultBGM.param())
-        hdr.append('    0x%08X,                 # Flags'        % self.Flags)
+        hdr.append('    "%s",                # FileName' % filename)
+        hdr.append('    "%s",                    # MapName' % self.MapName)
+        hdr.append('    "%s",                    # Location' % self.Location)
+        hdr.append('    0x%04X,                     # %s' % (self.MapIndex, mapname))
+        hdr.append('    %s,' % self.MapDefaultBGM.param())
+        hdr.append('    0x%08X,                 # Flags' % self.Flags)
 
         include = ''
         for scp in self.IncludedScenario:
@@ -1302,10 +1298,10 @@ class ScenarioInfo:
 
             hdr.append('')
 
-        AppendScpInfo(self.ScnInfo[SCN_INFO_NPC],       'DeclNpc')
-        AppendScpInfo(self.ScnInfo[SCN_INFO_MONSTER],   'DeclMonster')
-        AppendScpInfo(self.ScnInfo[SCN_INFO_EVENT],     'DeclEvent')
-        AppendScpInfo(self.ScnInfo[SCN_INFO_ACTOR],     'DeclActor')
+        AppendScpInfo(self.ScnInfo[SCN_INFO_NPC], 'DeclNpc')
+        AppendScpInfo(self.ScnInfo[SCN_INFO_MONSTER], 'DeclMonster')
+        AppendScpInfo(self.ScnInfo[SCN_INFO_EVENT], 'DeclEvent')
+        AppendScpInfo(self.ScnInfo[SCN_INFO_ACTOR], 'DeclActor')
 
         if len(self.PlaceName) != 0:
             for place in self.PlaceName:
@@ -1315,14 +1311,14 @@ class ScenarioInfo:
             hdr.append('')
 
         if len(self.ChipFrameInfo) != 0:
-            #hdr.append('ChipFrameList((')
+            # hdr.append('ChipFrameList((')
             index = 0
             for frame in self.ChipFrameInfo:
                 func = 'ChipFrameInfo(%s)' % frame.param()
                 hdr.append('%s # %d' % (ljust_cn(func, 60), index))
                 index += 1
 
-            #hdr.append('))')
+            # hdr.append('))')
             hdr.append('')
 
         hdr.append('ScpFunction((')
@@ -1352,7 +1348,6 @@ class ScenarioInfo:
 
         lines.append('SaveToFile()')
         lines.append('')
-
         #txt = '\r\n'.join(lines)
         #lines = txt.replace('\r\n', '\n').replace('\r', '\n').split('\n')
 
@@ -1406,13 +1401,13 @@ class ScenarioInfo:
         info.append('')
 
         ScnInfoNames = \
-        [
-            'ChipInfo',
-            'NpcInformation',
-            'MonsterInformation',
-            'ScpInfo',
-            'InfoUnknown1',
-        ]
+            [
+                'ChipInfo',
+                'NpcInformation',
+                'MonsterInformation',
+                'ScpInfo',
+                'InfoUnknown1',
+            ]
 
         info.append('ScnInfo:')
         for i in range(len(self.ScnInfo)):
@@ -1432,9 +1427,9 @@ class ScenarioInfo:
         info.append('Unknown_51                 = %s' % self.Unknown_51)
 
         info.append('')
-        #info.append('Information:')
-        #info.append('%s' % (self.InitData))
-        #info.append('')
+        # info.append('Information:')
+        # info.append('%s' % (self.InitData))
+        # info.append('')
 
         info.append('ScenaFunctions:')
         for sec in self.ScenaFunctions:
@@ -1472,10 +1467,10 @@ if __name__ == '__main__':
 #    iterlib.forEachFileMP(procfile, sys.argv[1:], '*.bin')
     cp = 'gbk'
     start_argv = 1
-    if len(sys.argv) > 1 and sys.argv[1].startswith('--cp='):
+    if sys.argv[1].startswith('--cp='):
         cp = sys.argv[1][5:]
         start_argv = 2
-    elif len(sys.argv) > 1 and sys.argv[1].startswith('--cppy='):
+    elif sys.argv[1].startswith('--cppy='):
         cppy = os.path.abspath(sys.argv[1][7:])
         ccode = importlib.machinery.SourceFileLoader(os.path.basename(cppy).split('.')[0], cppy).load_module()
         ccode.register()
@@ -1485,7 +1480,7 @@ if __name__ == '__main__':
     edao.CODE_PAGE = cp
     edao.edao_op_table.CodePage = cp
 
-    files = [] if len(sys.argv) <= start_argv else iterlib.forEachGetFiles(sys.argv[start_argv:], '*.bin')
+    files = iterlib.forEachGetFiles(sys.argv[start_argv:], '*.bin')
 
     #Log.OpenLog(sys.argv[start_argv] + '\..\log.txt')
 

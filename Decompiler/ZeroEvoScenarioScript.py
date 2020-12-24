@@ -1,6 +1,6 @@
 from Assembler.Assembler2s import *
 from Base.ZeroBase import *
-import Instruction.ScenaOpTableEDZero as edao
+import Instruction.ScenaOpTableEDZeroEvo as edao
 
 import importlib.machinery
 import os
@@ -1447,8 +1447,6 @@ class ScenarioInfo:
         info.append('')
 
         return '\r\n'.join(info)
-
-
 def procfile(file, cp=None):
     if cp:
         edao.CODE_PAGE = cp
