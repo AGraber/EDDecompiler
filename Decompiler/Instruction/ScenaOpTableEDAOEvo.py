@@ -36,77 +36,80 @@ InstructionNames[0x14]  = 'BlurSwitch'
 InstructionNames[0x15]  = 'CancelBlur'
 InstructionNames[0x16]  = 'OP_16'
 InstructionNames[0x17]  = 'ShowSaveMenu'
-InstructionNames[0x19]  = 'EventBegin'
-InstructionNames[0x1A]  = 'EventEnd'
+InstructionNames[0x18]  = 'EventBegin'
+InstructionNames[0x19]  = 'EventEnd'
+InstructionNames[0x1A]  = 'OP_1A'
 InstructionNames[0x1B]  = 'OP_1B'
-InstructionNames[0x1C]  = 'OP_1C'
-InstructionNames[0x1D]  = 'SetBarrier'
-InstructionNames[0x1E]  = 'PlayBGM'
-InstructionNames[0x1F]  = 'OP_1F'
-InstructionNames[0x20]  = 'VolumeBGM'
-InstructionNames[0x21]  = 'StopBGM'
-InstructionNames[0x22]  = 'WaitBGM'
-InstructionNames[0x23]  = 'Sound'
+InstructionNames[0x1C]  = 'SetBarrier'
+InstructionNames[0x1D]  = 'PlayBGM'
+InstructionNames[0x1E]  = 'OP_1E'
+InstructionNames[0x1F]  = 'VolumeBGM'
+InstructionNames[0x20]  = 'StopBGM'
+InstructionNames[0x21]  = 'WaitBGM'
+InstructionNames[0x22]  = 'Sound'
+InstructionNames[0x23]  = 'OP_23'
 InstructionNames[0x24]  = 'OP_24'
-InstructionNames[0x25]  = 'OP_25'
-InstructionNames[0x26]  = 'SoundDistance'
-InstructionNames[0x27]  = 'SoundLoad'
-InstructionNames[0x28]  = 'Yield'
+InstructionNames[0x25]  = 'SoundDistance'
+InstructionNames[0x26]  = 'SoundLoad'
+InstructionNames[0x27]  = 'Yield'
+InstructionNames[0x28]  = 'OP_28'
 InstructionNames[0x29]  = 'OP_29'
 InstructionNames[0x2A]  = 'OP_2A'
 InstructionNames[0x2B]  = 'OP_2B'
 InstructionNames[0x2C]  = 'OP_2C'
-InstructionNames[0x2D]  = 'OP_2D'
-InstructionNames[0x2E]  = 'AddParty'
-InstructionNames[0x2F]  = 'RemoveParty'
-InstructionNames[0x30]  = 'ClearParty'
+InstructionNames[0x2D]  = 'AddParty'
+InstructionNames[0x2E]  = 'RemoveParty'
+InstructionNames[0x2F]  = 'ClearParty'
+InstructionNames[0x30]  = 'OP_30'
 InstructionNames[0x31]  = 'OP_31'
-InstructionNames[0x32]  = 'OP_32'
-InstructionNames[0x35]  = 'RemoveCraft'
-InstructionNames[0x36]  = 'AddCraft'
-InstructionNames[0x37]  = 'OP_37'
-InstructionNames[0x38]  = 'OP_38'
-InstructionNames[0x39]  = 'AddSepith'
-InstructionNames[0x3A]  = 'SubSepith'
-InstructionNames[0x3B]  = 'AddMira'
-InstructionNames[0x3C]  = 'SubMira'
-InstructionNames[0x3D]  = 'OP_3D'
-InstructionNames[0x3E]  = 'OP_3E'
-InstructionNames[0x3F]  = 'AddItemNumber'
-InstructionNames[0x40]  = 'SubItemNumber'
-InstructionNames[0x41]  = 'GetItemNumber'
-InstructionNames[0x42]  = 'OP_42'
-InstructionNames[0x43]  = 'GetPartyIndex'
-InstructionNames[0x44]  = 'BeginChrThread'
-InstructionNames[0x45]  = 'EndChrThread'
-InstructionNames[0x46]  = 'QueueWorkItem'
-InstructionNames[0x47]  = 'QueueWorkItem2'
-InstructionNames[0x48]  = 'WaitChrThread'
+InstructionNames[0x32]  = 'RemoveCraft'
+InstructionNames[0x33]  = 'AddCraft'
+InstructionNames[0x34]  = 'OP_34'
+InstructionNames[0x35]  = 'OP_35'
+InstructionNames[0x36]  = 'AddSepith'
+InstructionNames[0x37]  = 'SubSepith'
+InstructionNames[0x38]  = 'AddMira'
+InstructionNames[0x39]  = 'SubMira'
+InstructionNames[0x3A]  = 'OP_3A'
+InstructionNames[0x3B]  = 'OP_3B'
+InstructionNames[0x3C]  = 'AddItemNumber'
+InstructionNames[0x3D]  = 'SubItemNumber'
+InstructionNames[0x3E]  = 'GetItemNumber'
+InstructionNames[0x3F]  = 'OP_3F'
+InstructionNames[0x40]  = 'GetPartyIndex'
+InstructionNames[0x41]  = 'BeginChrThread'
+InstructionNames[0x42]  = 'EndChrThread'
+InstructionNames[0x43]  = 'QueueWorkItem'
+InstructionNames[0x44]  = 'QueueWorkItem2'
+InstructionNames[0x45]  = 'WaitChrThread'
+InstructionNames[0x46]  = 'OP_46'
+InstructionNames[0x47]  = 'Event'
+InstructionNames[0x48]  = 'OP_48'
 InstructionNames[0x49]  = 'OP_49'
-InstructionNames[0x4A]  = 'Event'
-InstructionNames[0x4B]  = 'OP_4B'
+InstructionNames[0x4A]  = 'OP_4A'
+InstructionNames[0x4B]  = 'RunExpression'
 InstructionNames[0x4C]  = 'OP_4C'
 InstructionNames[0x4D]  = 'OP_4D'
-InstructionNames[0x4E]  = 'RunExpression'
+InstructionNames[0x4E]  = 'OP_4E'
 InstructionNames[0x4F]  = 'OP_4F'
-InstructionNames[0x50]  = 'OP_50'
-InstructionNames[0x51]  = 'OP_51'
-InstructionNames[0x52]  = 'OP_52'
-InstructionNames[0x53]  = 'TalkBegin'
-InstructionNames[0x54]  = 'TalkEnd'
-InstructionNames[0x55]  = 'AnonymousTalk'
-InstructionNames[0x56]  = 'OP_56'
+InstructionNames[0x50]  = 'TalkBegin'
+InstructionNames[0x51]  = 'TalkEnd'
+InstructionNames[0x52]  = 'AnonymousTalk'
+InstructionNames[0x53]  = 'OP_53'
+InstructionNames[0x54]  = 'OP_54'
+InstructionNames[0x55]  = 'MenuTitle'
+InstructionNames[0x56]  = 'CloseMessageWindow'
 InstructionNames[0x57]  = 'OP_57'
-InstructionNames[0x58]  = 'MenuTitle'
-InstructionNames[0x59]  = 'CloseMessageWindow'
-InstructionNames[0x5A]  = 'OP_5A'
-InstructionNames[0x5B]  = 'SetMessageWindowPos'
-InstructionNames[0x5C]  = 'ChrTalk'
-InstructionNames[0x5D]  = 'NpcTalk'
-InstructionNames[0x5E]  = 'Menu'
-InstructionNames[0x5F]  = 'MenuEnd'
+InstructionNames[0x58]  = 'SetMessageWindowPos'
+InstructionNames[0x59]  = 'ChrTalk'
+InstructionNames[0x5A]  = 'NpcTalk'
+InstructionNames[0x5B]  = 'Menu'
+InstructionNames[0x5C]  = 'MenuEnd'
+InstructionNames[0x5D]  = 'OP_5D'
+InstructionNames[0x5E]  = 'SetChrName'
+InstructionNames[0x5F]  = 'OP_5F'
 InstructionNames[0x60]  = 'OP_60'
-InstructionNames[0x61]  = 'SetChrName'
+InstructionNames[0x61]  = 'OP_61'
 InstructionNames[0x62]  = 'OP_62'
 InstructionNames[0x63]  = 'OP_63'
 InstructionNames[0x64]  = 'OP_64'
@@ -114,42 +117,47 @@ InstructionNames[0x65]  = 'OP_65'
 InstructionNames[0x66]  = 'OP_66'
 InstructionNames[0x67]  = 'OP_67'
 InstructionNames[0x68]  = 'OP_68'
-InstructionNames[0x69]  = 'OP_69'
-InstructionNames[0x6A]  = 'OP_6A'
+InstructionNames[0x69]  = 'SetCameraDistance'
+InstructionNames[0x6A]  = 'MoveCamera'
 InstructionNames[0x6B]  = 'OP_6B'
-InstructionNames[0x6C]  = 'SetCameraDistance'
-InstructionNames[0x6D]  = 'MoveCamera'
+InstructionNames[0x6C]  = 'OP_6C'
+InstructionNames[0x6D]  = 'OP_6D'
 InstructionNames[0x6E]  = 'OP_6E'
-InstructionNames[0x6F]  = 'OP_6F'
-InstructionNames[0x70]  = 'OP_70'
+InstructionNames[0x6F]  = 'SetMapObjFlags'
+InstructionNames[0x70]  = 'ClearMapObjFlags'
 InstructionNames[0x71]  = 'OP_71'
-InstructionNames[0x72]  = 'SetMapObjFlags'
-InstructionNames[0x73]  = 'ClearMapObjFlags'
+InstructionNames[0x72]  = 'OP_72'
+InstructionNames[0x73]  = 'SetMapObjFrame'
 InstructionNames[0x74]  = 'OP_74'
 InstructionNames[0x75]  = 'OP_75'
-InstructionNames[0x76]  = 'SetMapObjFrame'
-InstructionNames[0x77]  = 'OP_77'
+InstructionNames[0x76]  = 'OP_76'
+InstructionNames[0x77]  = 'SetEventSkip'
 InstructionNames[0x78]  = 'OP_78'
 InstructionNames[0x79]  = 'OP_79'
-InstructionNames[0x7A]  = 'SetEventSkip'
-InstructionNames[0x7B]  = 'OP_7B'
-InstructionNames[0x7D]  = 'OP_7D'
+InstructionNames[0x7A]  = 'OP_7A'
+InstructionNames[0x7B]  = 'SetChrChip'
+InstructionNames[0x7C]  = 'OP_7C'
+InstructionNames[0x7D]  = 'LoadEffect'
+InstructionNames[0x7E]  = 'PlayEffect'
+InstructionNames[0x7F]  = 'OP_7F'
+InstructionNames[0x80]  = 'StopEffect'
+InstructionNames[0x81]  = 'OP_81'
 InstructionNames[0x82]  = 'OP_82'
-InstructionNames[0x83]  = 'SetChrChip'
-InstructionNames[0x84]  = 'OP_84'
-InstructionNames[0x85]  = 'LoadEffect'
-InstructionNames[0x86]  = 'PlayEffect'
-InstructionNames[0x87]  = 'OP_87'
-InstructionNames[0x88]  = 'StopEffect'
-InstructionNames[0x89]  = 'OP_89'
+InstructionNames[0x83]  = 'OP_83'
+InstructionNames[0x84]  = 'SetChrChipByIndex'
+InstructionNames[0x85]  = 'SetChrSubChip'
+InstructionNames[0x86]  = 'SetChrNameByIndex'
+InstructionNames[0x87]  = 'SetChrPos'
+InstructionNames[0x88]  = 'OP_88'
+InstructionNames[0x89]  = 'TurnDirection'
 InstructionNames[0x8A]  = 'OP_8A'
 InstructionNames[0x8B]  = 'OP_8B'
-InstructionNames[0x8C]  = 'SetChrChipByIndex'
-InstructionNames[0x8D]  = 'SetChrSubChip'
-InstructionNames[0x8E]  = 'SetChrNameByIndex'
-InstructionNames[0x8F]  = 'SetChrPos'
+InstructionNames[0x8C]  = 'OP_8C'
+InstructionNames[0x8D]  = 'OP_8D'
+InstructionNames[0x8E]  = 'OP_8E'
+InstructionNames[0x8F]  = 'OP_8F'
 InstructionNames[0x90]  = 'OP_90'
-InstructionNames[0x91]  = 'TurnDirection'
+InstructionNames[0x91]  = 'OP_91'
 InstructionNames[0x92]  = 'OP_92'
 InstructionNames[0x93]  = 'OP_93'
 InstructionNames[0x94]  = 'OP_94'
@@ -158,88 +166,76 @@ InstructionNames[0x96]  = 'OP_96'
 InstructionNames[0x97]  = 'OP_97'
 InstructionNames[0x98]  = 'OP_98'
 InstructionNames[0x99]  = 'OP_99'
-InstructionNames[0x9A]  = 'OP_9A'
-InstructionNames[0x9B]  = 'OP_9B'
-InstructionNames[0x9C]  = 'OP_9C'
-InstructionNames[0x9D]  = 'OP_9D'
+InstructionNames[0x9A]  = 'SetChrFlags'
+InstructionNames[0x9B]  = 'ClearChrFlags'
+InstructionNames[0x9C]  = 'SetChrBattleFlags'
+InstructionNames[0x9D]  = 'ClearChrBattleFlags'
 InstructionNames[0x9E]  = 'OP_9E'
 InstructionNames[0x9F]  = 'OP_9F'
 InstructionNames[0xA0]  = 'OP_A0'
-InstructionNames[0xA1]  = 'OP_A1'
-InstructionNames[0xA2]  = 'SetChrFlags'
-InstructionNames[0xA3]  = 'ClearChrFlags'
-InstructionNames[0xA4]  = 'SetChrBattleFlags'
-InstructionNames[0xA5]  = 'ClearChrBattleFlags'
+InstructionNames[0xA1]  = 'SetScenarioFlags'
+InstructionNames[0xA2]  = 'ClearScenarioFlags'
+InstructionNames[0xA3]  = 'OP_A3'
+InstructionNames[0xA4]  = 'OP_A4'
+InstructionNames[0xA5]  = 'OP_A5'
 InstructionNames[0xA6]  = 'OP_A6'
 InstructionNames[0xA7]  = 'OP_A7'
 InstructionNames[0xA8]  = 'OP_A8'
-InstructionNames[0xA9]  = 'SetScenarioFlags'
-InstructionNames[0xAA]  = 'ClearScenarioFlags'
+InstructionNames[0xA9]  = 'OutputDebugInt'
+InstructionNames[0xAA]  = 'OP_AA'
 InstructionNames[0xAB]  = 'OP_AB'
-InstructionNames[0xAC]  = 'OP_AC'
-InstructionNames[0xAD]  = 'OP_AD'
-InstructionNames[0xAE]  = 'OP_AE'
+InstructionNames[0xAC]  = 'LoadOps'
+InstructionNames[0xAD]  = 'ModifyEventFlags'
+InstructionNames[0xAE]  = 'PlayMovie'
 InstructionNames[0xAF]  = 'OP_AF'
-InstructionNames[0xB2]  = 'OP_B2'
-InstructionNames[0xB3]  = 'OutputDebugInt'
+InstructionNames[0xB0]  = 'ReplaceBGM'
+InstructionNames[0xB1]  = 'OP_B1'
+InstructionNames[0xB2]  = 'UseItem'
+InstructionNames[0xB3]  = 'OP_B3'
 InstructionNames[0xB4]  = 'OP_B4'
-InstructionNames[0xB5]  = 'OP_B5'
-InstructionNames[0xB6]  = 'LoadOps'
-InstructionNames[0xB7]  = 'ModifyEventFlags'
-InstructionNames[0xB8]  = 'PlayMovie'
-InstructionNames[0xB9]  = 'OP_B9'
-InstructionNames[0xBA]  = 'ReplaceBGM'
-InstructionNames[0xBC]  = 'OP_BC'
-InstructionNames[0xBD]  = 'UseItem'
+InstructionNames[0xB5]  = 'SetChrChipPat'
+InstructionNames[0xB6]  = 'LoadChrChipPat'
+InstructionNames[0xB7]  = 'OP_B7'
+InstructionNames[0xB8]  = 'OP_B8'
+InstructionNames[0xB9]  = 'MiniGame'
+InstructionNames[0xBA]  = 'OP_BA'
+InstructionNames[0xBB]  = 'OP_BB'
+InstructionNames[0xBC]  = 'CreatePortrait'
+InstructionNames[0xBD]  = 'OP_BD'
 InstructionNames[0xBE]  = 'OP_BE'
-InstructionNames[0xBF]  = 'OP_BF'
-InstructionNames[0xC0]  = 'SetChrChipPat'
-InstructionNames[0xC2]  = 'LoadChrChipPat'
+InstructionNames[0xBF]  = 'PlaceName2'
+InstructionNames[0xC0]  = 'PartySelect'
+InstructionNames[0xC1]  = 'OP_C1'
+InstructionNames[0xC2]  = 'MenuCmd'
 InstructionNames[0xC3]  = 'OP_C3'
 InstructionNames[0xC4]  = 'OP_C4'
-InstructionNames[0xC5]  = 'MiniGame'
+InstructionNames[0xC5]  = 'OP_C5'
+InstructionNames[0xC6]  = 'OP_C6'
 InstructionNames[0xC7]  = 'OP_C7'
+InstructionNames[0xC8]  = 'LoadChrToIndex'
 InstructionNames[0xC9]  = 'OP_C9'
-InstructionNames[0xCA]  = 'CreatePortrait'
+InstructionNames[0xCA]  = 'OP_CA'
 InstructionNames[0xCB]  = 'OP_CB'
 InstructionNames[0xCC]  = 'OP_CC'
-InstructionNames[0xCD]  = 'PlaceName2'
-InstructionNames[0xCE]  = 'PartySelect'
+InstructionNames[0xCD]  = 'OP_CD'
+InstructionNames[0xCE]  = 'OP_CE'
 InstructionNames[0xCF]  = 'OP_CF'
-InstructionNames[0xD0]  = 'MenuCmd'
+InstructionNames[0xD0]  = 'LoadAnimeChip'
 InstructionNames[0xD1]  = 'OP_D1'
 InstructionNames[0xD2]  = 'OP_D2'
 InstructionNames[0xD3]  = 'OP_D3'
 InstructionNames[0xD4]  = 'OP_D4'
 InstructionNames[0xD5]  = 'OP_D5'
-InstructionNames[0xD6]  = 'LoadChrToIndex'
+InstructionNames[0xD6]  = 'OP_D6'
 InstructionNames[0xD7]  = 'OP_D7'
 InstructionNames[0xD8]  = 'OP_D8'
-InstructionNames[0xD9]  = 'OP_D9'
+InstructionNames[0xD9]  = 'ShowSaveClearMenu'
 InstructionNames[0xDA]  = 'OP_DA'
+InstructionNames[0xDB]  = 'OP_DB'
 InstructionNames[0xDC]  = 'OP_DC'
 InstructionNames[0xDD]  = 'OP_DD'
 InstructionNames[0xDE]  = 'OP_DE'
-InstructionNames[0xDF]  = 'LoadAnimeChip'
-InstructionNames[0xE0]  = 'OP_E0'
-InstructionNames[0xE2]  = 'OP_E2'
-InstructionNames[0xE3]  = 'OP_E3'
-InstructionNames[0xE4]  = 'OP_E4'
-InstructionNames[0xE5]  = 'OP_E5'
-InstructionNames[0xE6]  = 'OP_E6'
-InstructionNames[0xE7]  = 'OP_E7'
-InstructionNames[0xE8]  = 'OP_E8'
-InstructionNames[0xE9]  = 'ShowSaveClearMenu'
-InstructionNames[0xF0]  = 'OP_F0'
-InstructionNames[0xF3]  = 'OP_F3'
-InstructionNames[0xF4]  = 'OP_F4'
-InstructionNames[0xFA]  = 'OP_FA'
-InstructionNames[0xFB]  = 'OP_FB'
-InstructionNames[0xFC]  = 'OP_FC'
-InstructionNames[0xFD]  = 'OP_FD'
-InstructionNames[0xFE]  = 'OP_FE'
-InstructionNames[0xFF]  = 'OP_FF'
-
+InstructionNames[0xDF]  = 'OP_DF'
 InstructionNames[0xE0]  = 'OP_E0'
 InstructionNames[0xE1]  = 'OP_E1'
 InstructionNames[0xE2]  = 'OP_E2'
@@ -247,32 +243,23 @@ InstructionNames[0xE3]  = 'OP_E3'
 InstructionNames[0xE4]  = 'OP_E4'
 InstructionNames[0xE5]  = 'OP_E5'
 InstructionNames[0xE6]  = 'OP_E6'
+InstructionNames[0xE7]  = 'OP_E7'
+InstructionNames[0xE8]  = 'OP_E8'
+InstructionNames[0xE9]  = 'OP_E9'
+InstructionNames[0xEA]  = 'OP_EA'
+InstructionNames[0xEB]  = 'OP_EB'
+InstructionNames[0xEC]  = 'OP_EC'
 InstructionNames[0xED]  = 'OP_ED'
 InstructionNames[0xEE]  = 'OP_EE'
 InstructionNames[0xEF]  = 'OP_EF'
-
 InstructionNames[0xF0]  = 'OP_F0'
 InstructionNames[0xF1]  = 'OP_F1'
 InstructionNames[0xF2]  = 'OP_F2'
 InstructionNames[0xF3]  = 'OP_F3'
-InstructionNames[0xF4]  = 'OP_F4'
-InstructionNames[0xF7]  = 'OP_F7'
-InstructionNames[0xF8]  = 'OP_F8'
-InstructionNames[0xF9]  = 'OP_F9'
-InstructionNames[0xFA]  = 'OP_FA'
-InstructionNames[0xFB]  = 'OP_FB'
-InstructionNames[0xFC]  = 'OP_FC'
-InstructionNames[0xFD]  = 'OP_FD'
-InstructionNames[0xFF]  = 'OP_FF'
 
 for op, name in InstructionNames.items():
     expr = '%s = 0x%08X' % (name, op)
     exec(expr)
-
-def instEvoIgnore(op, operand = NO_OPERAND, flags = 0, handler = None):
-
-    return EDAOScenaInstructionTableEntry(op, "# Not supported on PC/PSP "+InstructionNames[op], operand, flags, handler)
-
 
 
 def GetItemName(id):
@@ -388,7 +375,7 @@ def FormatFuncString(data, oprfmt, mark_number = None):
                     tagname = "ChrNameIdx"
                 idcomm = '    # TAG:%s_%02X' % (tagname.upper(), data.Instruction.Offset)
                 txt.append(idcomm)
-
+            
             if len(strlist) == 0:
                 s = '    ""'
                 txt.append(s)
@@ -589,7 +576,7 @@ class EDAOScenaInstructionTableEntry(InstructionTableEntry):
                     
             if len(buf) > 0:
                 string.append(ScpString(SCPSTR_CODE_STRING, buf.decode(self.Container.CodePage).replace('\\', '\\\\')))
-
+            
             return string
 
         oprtype = \
@@ -1035,6 +1022,40 @@ def scp_battle(data):
         BattleInfoOffset = data.Arguments[0]
         ins.OperandFormat = operand_with_battle_info if type(BattleInfoOffset) == str else operand_without_battle_info
 
+def scp_16(data):
+    def getopr(opr1):
+        operand = ''
+
+        if opr1 == 2:
+            operand = 'IIIHHI'
+        elif opr1 == 3:
+            operand = 'BBB'
+
+        return operand
+
+    if data.Reason == HANDLER_REASON_DISASM:
+
+        fs = data.FileStream
+        ins = data.Instruction
+
+        opr1 = fs.ReadByte()
+
+        ins.Operand.append(opr1)
+
+        operand = getopr(opr1)
+
+        ins.Operand += data.TableEntry.GetAllOperand(operand, fs)
+
+        ins.OperandFormat = 'B' + operand
+
+        return ins
+
+    elif data.Reason == HANDLER_REASON_ASSEMBLE:
+
+        opr1 = data.Arguments[0]
+        operand = getopr(opr1)
+
+        data.Instruction.OperandFormat = 'B' + operand
 
 # SetBarrier(op_0, id, type, 0, x, z, y, cx, cy, degree * 1000)
 # op: 0 = create
@@ -1391,7 +1412,6 @@ def scp_create_menu_title(data):
         data.Instruction.OperandFormat = 'hhhS'
 
 def scp_create_chr_talk(data):
-
     if data.Reason == HANDLER_REASON_DISASM:
 
         fs = data.FileStream
@@ -1460,6 +1480,48 @@ def scp_create_menu(data):
 
         data.Instruction.OperandFormat = 'hhhcS'
 
+def scp_set_chr_name(data):
+
+    if data.Reason == HANDLER_REASON_DISASM:
+
+        fs = data.FileStream
+        ins = data.Instruction
+
+        ins.Operand = data.TableEntry.GetAllOperand('S', fs)
+
+        ins.OperandFormat = 'S'
+
+        return ins
+
+    elif data.Reason == HANDLER_REASON_FORMAT:
+
+        return FormatFuncString(data, data.Instruction.OperandFormat, -1)
+
+    elif data.Reason == HANDLER_REASON_ASSEMBLE:
+
+        data.Instruction.OperandFormat = 'S'
+
+def scp_set_chr_name_by_index(data):
+
+    if data.Reason == HANDLER_REASON_DISASM:
+
+        fs = data.FileStream
+        ins = data.Instruction
+
+        ins.Operand = data.TableEntry.GetAllOperand('WS', fs)
+
+        ins.OperandFormat = 'WS'
+
+        return ins
+
+    elif data.Reason == HANDLER_REASON_FORMAT:
+
+        return FormatFuncString(data, data.Instruction.OperandFormat, -1)
+
+    elif data.Reason == HANDLER_REASON_ASSEMBLE:
+
+        data.Instruction.OperandFormat = 'WS'
+
 def scp_76(data):
 
     def getopr(opr3):
@@ -1467,7 +1529,7 @@ def scp_76(data):
         if opr3 == 0 or \
            opr3 == 1 or \
            opr3 == 3 or \
-           opr3 == 4:
+		   opr3 == 4:
 
             operand = 'L'
 
@@ -1604,8 +1666,8 @@ def scp_set_scenario_flags(data):
         if len(data.Arguments) == 2:
             offset, bit = data.Arguments[0], data.Arguments[1]
             if offset >= 0x220:
-                pass
-                #raise Exception('offset must be less than 0x220')
+                #pass
+                raise Exception('offset must be less than 0x220')
 
             data.Arguments = [MakeScenarioFlags(offset, bit)]
 
@@ -1668,9 +1730,8 @@ def scp_menu_cmd(data):
         ins.OperandFormat = 'CC' + operand
 
         return ins
-
     elif data.Reason == HANDLER_REASON_FORMAT:
-    
+
         return FormatFuncString(data, data.Instruction.OperandFormat, -1)
 
     elif data.Reason == HANDLER_REASON_ASSEMBLE:
@@ -1711,47 +1772,6 @@ def scp_load_chr(data):
         data.Arguments[0] = ScenarioChipInfo(data.Arguments[0]).fileindex()
         data.Instruction.OperandFormat = 'LB'
 
-def scp_set_chr_name(data):
-
-    if data.Reason == HANDLER_REASON_DISASM:
-        fs = data.FileStream
-        ins = data.Instruction
-
-        ins.Operand = data.TableEntry.GetAllOperand('S', fs)
-
-        ins.OperandFormat = 'S'
-
-        return ins
-
-    elif data.Reason == HANDLER_REASON_FORMAT:
-
-        return FormatFuncString(data, data.Instruction.OperandFormat, -1)
-
-    elif data.Reason == HANDLER_REASON_ASSEMBLE:
-
-        data.Instruction.OperandFormat = 'S'
-
-def scp_set_chr_name_by_index(data):
-
-    if data.Reason == HANDLER_REASON_DISASM:
-
-        fs = data.FileStream
-        ins = data.Instruction
-
-        ins.Operand = data.TableEntry.GetAllOperand('WS', fs)
-
-        ins.OperandFormat = 'WS'
-
-        return ins
-
-    elif data.Reason == HANDLER_REASON_FORMAT:
-
-        return FormatFuncString(data, data.Instruction.OperandFormat, -1)
-
-    elif data.Reason == HANDLER_REASON_ASSEMBLE:
-
-        data.Instruction.OperandFormat = 'WS'
-
 def scp_e4(data):
 
     def getopr(opr):
@@ -1785,233 +1805,250 @@ def scp_e4(data):
 
 edao_op_list = \
 [
-    inst(ExitThread),
-    inst(Return,                    NO_OPERAND,             INSTRUCTION_END_BLOCK),
-    inst(Jc,                        NO_OPERAND,             INSTRUCTION_START_BLOCK,    scp_if),
-    inst(Jump,                      'O',                    INSTRUCTION_JUMP),
-    inst(Switch,                    NO_OPERAND,             INSTRUCTION_END_BLOCK,      scp_switch),
-    inst(Call,                      'CC'),          # Call(scp index, func index)
-    inst(NewScene,                  NO_OPERAND,             0,                          scp_new_scene),
-    inst(IdleLoop),
-    inst(Sleep,                     'H'),
-    inst(SetMapFlags,               'L'),
-    inst(ClearMapFlags,             'L'),
-    inst(FadeToDark,                'iic'),
-    inst(FadeToBright,              'ii'),
-    inst(OP_0D),
-    inst(Fade,                      'I'),
-    inst(Battle,                    NO_OPERAND,             0,                          scp_battle),
-    inst(OP_10,                     'BB'),
-    inst(OP_11,                     'BBBLLL'),
-    inst(StopSound,                 'HHC'),
-    inst(OP_13,                     'W'),   # poswnd
-    inst(BlurSwitch,                'WLWBW'),
-    inst(CancelBlur,                'I'),
-    inst(OP_16,                     'B'),
-    inst(ShowSaveMenu),
-    inst(EventBegin,                'B'),
-    inst(EventEnd,                  'B'),
-    inst(OP_1B,                     'BBW'),
-    inst(OP_1C,                     'BBBBBBWW'),
-    inst(SetBarrier,                NO_OPERAND,             0,                          scp_1d),    # see scp_1d
-    inst(PlayBGM,                   'MC'),
-    inst(OP_1F),
-    inst(VolumeBGM,                 'BL'),
-    inst(StopBGM,                   'L'),
-    inst(WaitBGM),
-    inst(Sound,                     'HCCC'),
-    inst(OP_24,                     'W'),
-    inst(OP_25,                     'WB'),
-    inst(SoundDistance,             'WLLLLLBL'),
-    inst(SoundLoad,                 'H'),
-    inst(Yield),
-    inst(OP_29,                     NO_OPERAND,             0,                          scp_29),
-    inst(OP_2A,                     NO_OPERAND,             0,                          scp_2a),
-    inst(OP_2B,                     NO_OPERAND,             0,                          scp_2b),
-    inst(OP_2C,                     'WW'),
-    inst(OP_2D,                     'WW'),
-    inst(AddParty,                  'BBB'),
-    inst(RemoveParty,               'BB'),
-    inst(ClearParty),
-    inst(OP_31,                     'B'),
-    inst(OP_32,                     'BBW'),
-    inst(RemoveCraft,               'BW'),
-    inst(AddCraft,                  'BW'),
-    inst(OP_37),
-    inst(OP_38,                     NO_OPERAND,             0,                          scp_38),
-    inst(AddSepith,                 'BH'),          # AddSepith(0~6 or 0xFF, number)
-    inst(SubSepith,                 'BH'),
-    inst(AddMira,                   'H'),
-    inst(SubMira,                   'H'),
-    inst(OP_3D,                     'W'),
-    inst(OP_3E,                     'W'),
-    inst(AddItemNumber,             'Th'),
-    inst(SubItemNumber,             'Th'),
-    inst(GetItemNumber,             'TB'),
-    inst(OP_42,                     'BWB'),
-    inst(GetPartyIndex,             'B'),           # GetPartyIndex(chr_id)     return chr index of team member
-    inst(BeginChrThread,            'WCCC'),
-    inst(EndChrThread,              'WB'),
-    inst(QueueWorkItem,             NO_OPERAND,             0,                          scp_46),
-    inst(QueueWorkItem2,            NO_OPERAND,             0,                          scp_47),
-    inst(WaitChrThread,             'WC'),
-    inst(OP_49),
-    inst(Event,                     'CC'),
-    inst(OP_4B,                     'WB'),
-    inst(OP_4C,                     'WB'),
-    inst(OP_4D),
-    inst(RunExpression,             NO_OPERAND,             0,                          scp_4e),
-    inst(OP_4F),
-    inst(OP_50,                     NO_OPERAND,             0,                          scp_50),
-    inst(OP_51),
-    inst(OP_52,                     NO_OPERAND,             0,                          scp_52),
-    inst(TalkBegin,                 'W'),
-    inst(TalkEnd,                   'W'),
-    inst(AnonymousTalk,             NO_OPERAND,             0,                          scp_anonymous_talk),
-    inst(OP_56),
-    inst(OP_57,                     'B'),
-    inst(MenuTitle,                 NO_OPERAND,             0,                          scp_create_menu_title),
-    inst(CloseMessageWindow),
-    inst(OP_5A),
-    inst(SetMessageWindowPos,       'hhhh'),        # SetMessageWindowPos(x, y, -1, -1)
-    inst(ChrTalk,                   NO_OPERAND,             0,                          scp_create_chr_talk),
-    inst(NpcTalk,                   NO_OPERAND,             0,                          scp_create_npc_talk),
-    inst(Menu,                      NO_OPERAND,             0,                          scp_create_menu),
-    inst(MenuEnd,                   'W'),
-    inst(OP_60,                     'W'),
-    inst(SetChrName,                NO_OPERAND,             0,                          scp_set_chr_name),
-    inst(OP_62,                     'W'),
-    inst(OP_63,                     'WLIBBLB'),
-    inst(OP_64,                     'W'),
-    inst(OP_65,                     'BW'),
-    inst(OP_66,                     'BW'),
-    inst(OP_67,                     'W'),
-    inst(OP_68,                     'iiii'),
-    inst(OP_69,                     'BW'),
-    inst(OP_6A,                     'WL'),
-    inst(OP_6B,                     'W'),
-    inst(SetCameraDistance,         'ii'),          # SetCameraDistance(distance, duration)
-    inst(MoveCamera,                'hhhi'),        # MoveCamera(horizon, vertical, obliquity, duration)
-    inst(OP_6E,                     'ii'),
-    inst(OP_6F,                     'B'),
-    inst(OP_70,                     'BW'),
-    inst(OP_71,                     'BWWWL'),
-    inst(SetMapObjFlags,            'BL'),
-    inst(ClearMapObjFlags,          'BL'),
-    inst(OP_74,                     'WB'),
-    inst(OP_75,                     'BBL'),
-    inst(SetMapObjFrame,            NO_OPERAND,             0,                          scp_76),
-    inst(OP_77,                     'BW'),
-    inst(OP_78,                     'BW'),
-    inst(OP_79,                     'W'),
-    inst(SetEventSkip,              NO_OPERAND,             INSTRUCTION_START_BLOCK,    scp_set_event_skip),
-    inst(OP_7B,                     'B'),
-    inst(OP_7D,                     'BBBBL'),
-    inst(OP_82,                     'LLLL'),
-    inst(SetChrChip,                'BWWW'),
-    inst(OP_84,                     'BB'),
-    inst(LoadEffect,                'BS'),
-    inst(PlayEffect,                'BBWWiiihhhiiiwiiii'),
-    inst(OP_87,                     'BBBSWLLLWWWLLLL'),
-    inst(StopEffect,                'BB'),
-    inst(OP_89,                     'BB'),
-    inst(OP_8A,                     'B'),
-    inst(OP_8B,                     'W'),
-    inst(SetChrChipByIndex,         'WB'),
-    inst(SetChrSubChip,             'WB'),
-    inst(SetChrNameByIndex,         NO_OPERAND,             0,                          scp_set_chr_name_by_index),
-    inst(SetChrPos,                 'WiiiH'),
-    inst(OP_90,                     'Wiiih'),
-    inst(TurnDirection,             'WWH'),
-    inst(OP_92,                     'WLLW'),
-    inst(OP_93,                     'WWW'),
-    inst(OP_94,                     'WLLLLL'),
-    inst(OP_95,                     'WiiiiB'),
-    inst(OP_96,                     'WLLLLB'),
-    inst(OP_97,                     'WLLLLB'),
-    inst(OP_98,                     'WLLLLB'),
-    inst(OP_99,                     'WWLLB'),
-    inst(OP_9A,                     'WWLLB'),
-    inst(OP_9B,                     'BWWLLB'),
-    inst(OP_9C,                     'WLLLLL'),
-    inst(OP_9D,                     'WLLLLL'),
-    inst(OP_9E,                     'WLLLLW'),
-    inst(OP_9F,                     NO_OPERAND,             0,                          scp_9f),
-    inst(OP_A0,                     'WHBB'),
-    inst(OP_A1,                     NO_OPERAND,             0,                          scp_a1),
-    inst(SetChrFlags,               'WW'),
-    inst(ClearChrFlags,             'WW'),
-    inst(SetChrBattleFlags,         'WW'),
-    inst(ClearChrBattleFlags,       'WW'),
-    inst(OP_A6,                     'WLLLL'),
-    inst(OP_A7,                     'WBBBBL'),
-    inst(OP_A8,                     'WBBBL'),
-    inst(SetScenarioFlags,          NO_OPERAND,             0,                          scp_set_scenario_flags),
-    inst(ClearScenarioFlags,        NO_OPERAND,             0,                          scp_clear_scenario_flags),
-    inst(OP_AB,                     'W'),
-    inst(OP_AC,                     'W'),
-    inst(OP_AD,                     'W'),
-    inst(OP_AE,                     'WW'),
-    inst(OP_AF,                     'B'),
-    inst(OP_B2,                     'W'),
-    inst(OutputDebugInt,            'B'),
-    inst(OP_B4,                     'B'),
-    inst(OP_B5,                     'BW'),
-    inst(LoadOps),                                                  # obsolete
-    inst(ModifyEventFlags,          'CCW'),     # ModifyEventFlags(set_or_clear, event_index, flags)   0: set, 1: clear
-    inst(PlayMovie,                 'BSWW'),
-    inst(OP_B9,                     'B'),
-    inst(ReplaceBGM,                'MM'),
-    inst(OP_BC,                     'B'),
-    inst(UseItem,                   'WW'),
-    inst(OP_BE,                     'BW'),
-    inst(OP_BF,                     'BB'),
-    inst(SetChrChipPat,             'BBL'),                         # SetChrChipPat(chr_id, func_id, param)
-    inst(LoadChrChipPat),
-    inst(OP_C3,                     'BBWWWBiiiiii'),
-    inst(OP_C4,                     'BBWW'),
-    inst(MiniGame,                  'BLLLLLLLL'),
-    inst(OP_C7,                     'BB'),
-    inst(OP_C9,                     'BL'),
-    inst(CreatePortrait,            'CHHHHHHHHHHHHLBS'),
-    inst(OP_CB,                     'BBLLLL'),
-    inst(OP_CC,                     'BBB'),
-    inst(PlaceName2,                'hhSBh'),       # PlaceName2(x, y, itp_name, 0, duration)
-    inst(PartySelect,               'C'),           # PartySelect(0 = select menu, save = 1, restore = 2)
-    inst(OP_CF,                     NO_OPERAND,             0,                          scp_cf),
-    inst(MenuCmd,                   NO_OPERAND,             0,                          scp_menu_cmd),
-    inst(OP_D1,                     'W'),
-    inst(OP_D2,                     NO_OPERAND,             0,                          scp_d2),
-    inst(OP_D3,                     'WBS'),
-    inst(OP_D4,                     'LL'),
-    inst(OP_D5,                     'WLLLL'),
-    inst(LoadChrToIndex,            NO_OPERAND,             0,                          scp_load_chr),
-    inst(OP_D7,                     'B'),
-    inst(OP_D8,                     'BB'),
-    inst(OP_D9,                     'BB'),
-    inst(OP_DA,                     'B'),
-    inst(OP_DC,                     'B'),
-    inst(OP_DD),
-    inst(OP_DE,                     'S'),
-    inst(LoadAnimeChip,             'WBB'),
-    inst(OP_E0,                     'BB'),
-    inst(OP_E2,                     'B'),
-    inst(OP_E3,                     'LLL'),
-    inst(OP_E4,                     NO_OPERAND,             0,                          scp_e4),
-    inst(OP_E5,                     'B'),
-    inst(OP_E6,                     'BBBBBBL'),
-    inst(OP_E7),
-    inst(OP_E8),
-    inst(ShowSaveClearMenu),
-    inst(OP_F0,                     'BW'),
-    inst(OP_F3,                     'i'),
-    inst(OP_F4,                     'B'),
-    inst(OP_FA,                     'W'),
-    inst(OP_FB,                     'WB'),
-    inst(OP_FC,                     'W'),
-    inst(OP_FD,                     'WW'),
-    inst(OP_FE,                     'B'),
-    inst(OP_FF,                     'BLLL'),
+	inst(ExitThread),
+	inst(Return,                    NO_OPERAND,             INSTRUCTION_END_BLOCK),
+	inst(Jc,                        NO_OPERAND,             INSTRUCTION_START_BLOCK,    scp_if),
+	inst(Jump,                      'O',                    INSTRUCTION_JUMP),
+	inst(Switch,                    NO_OPERAND,             INSTRUCTION_END_BLOCK,      scp_switch),
+	inst(Call,                      'CC'),          # Call(scp index, func index)
+	inst(NewScene,                  NO_OPERAND,             0,                          scp_new_scene),
+	inst(IdleLoop),
+	inst(Sleep,                     'H'),
+	inst(SetMapFlags,               'L'),
+	inst(ClearMapFlags,             'L'),
+	inst(FadeToDark,                'iic'),
+	inst(FadeToBright,              'ii'),
+	inst(OP_0D),
+	inst(Fade,                      'I'),
+	inst(Battle,                    NO_OPERAND,             0,                          scp_battle),
+	inst(OP_10,                     'BB'),
+	inst(OP_11,                     'BBBLLL'),
+	inst(StopSound,                 'HHC'),
+	inst(OP_13,                     'W'),   # poswnd
+	inst(BlurSwitch,                'WLWBW'),
+	inst(CancelBlur,                'I'),
+	inst(OP_16,                     NO_OPERAND,             0,                          scp_16),    # see scp_16
+	inst(ShowSaveMenu),
+	inst(EventBegin,                'B'),
+	inst(EventEnd,                  'B'),
+	inst(OP_1A,                     'BBW'),
+	inst(OP_1B,                     'BBBBBBWW'),
+	inst(SetBarrier,                NO_OPERAND,             0,                          scp_1d),    # see scp_1d
+	inst(PlayBGM,                   'MC'),
+	inst(OP_1E),
+	inst(VolumeBGM,                 'BL'),
+	inst(StopBGM,                   'L'),
+	inst(WaitBGM),
+	inst(Sound,                     'HCCC'),
+	inst(OP_23,                     'W'),
+	inst(OP_24,                     'WB'),
+	inst(SoundDistance,             'WLLLLLBL'),
+	inst(SoundLoad,                 'H'),
+	inst(Yield),
+	inst(OP_28,                     NO_OPERAND,             0,                          scp_29),
+	inst(OP_29,                     NO_OPERAND,             0,                          scp_2a),
+	inst(OP_2A,                     NO_OPERAND,             0,                          scp_2b),
+	inst(OP_2B,                     'WW'),
+	inst(OP_2C,                     'WW'),
+	inst(AddParty,                  'BBB'),
+	inst(RemoveParty,               'BB'),
+	inst(ClearParty),
+	inst(OP_30,                     'B'),
+	inst(OP_31,                     'BBW'),
+	inst(RemoveCraft,               'BW'),
+	inst(AddCraft,                  'BW'),
+	inst(OP_34),
+	inst(OP_35,                     NO_OPERAND,             0,                          scp_38),
+	inst(AddSepith,                 'BH'),          # AddSepith(0~6 or 0xFF, number)
+	inst(SubSepith,                 'BH'),
+	inst(AddMira,                   'H'),
+	inst(SubMira,                   'H'),
+	inst(OP_3A,                     'W'),
+	inst(OP_3B,                     'W'),
+	inst(AddItemNumber,             'Th'),
+	inst(SubItemNumber,             'Th'),
+	inst(GetItemNumber,             'TB'),
+	inst(OP_3F,                     'BWB'),
+	inst(GetPartyIndex,             'B'),           # GetPartyIndex(chr_id)     return chr index of team member
+	inst(BeginChrThread,            'WCCC'),
+	inst(EndChrThread,              'WB'),
+	inst(QueueWorkItem,             NO_OPERAND,             0,                          scp_46),
+	inst(QueueWorkItem2,            NO_OPERAND,             0,                          scp_47),
+	inst(WaitChrThread,             'WC'),
+	inst(OP_46),
+	inst(Event,                     'CC'),
+	inst(OP_48,                     'WB'),
+	inst(OP_49,                     'WB'),
+	inst(OP_4A),
+	inst(RunExpression,             NO_OPERAND,             0,                          scp_4e),
+	inst(OP_4C),
+	inst(OP_4D,                     NO_OPERAND,             0,                          scp_50),
+	inst(OP_4E),
+	inst(OP_4F,                     NO_OPERAND,             0,                          scp_52),
+	inst(TalkBegin,                 'W'),
+	inst(TalkEnd,                   'W'),
+	inst(AnonymousTalk,             NO_OPERAND,             0,                          scp_anonymous_talk),
+	inst(OP_53),
+	inst(OP_54,                     'B'),
+	inst(MenuTitle,                  NO_OPERAND,             0,                          scp_create_menu_title),
+	inst(CloseMessageWindow),
+	inst(OP_57),
+	inst(SetMessageWindowPos,       'hhhh'),        # SetMessageWindowPos(x, y, -1, -1)
+	inst(ChrTalk,                   NO_OPERAND,             0,                          scp_create_chr_talk),
+	inst(NpcTalk,                   NO_OPERAND,             0,                          scp_create_npc_talk),
+	inst(Menu,                      NO_OPERAND,             0,                          scp_create_menu),
+	inst(MenuEnd,                   'W'),
+	inst(OP_5D,                     'W'),
+	inst(SetChrName,                NO_OPERAND,             0,                          scp_set_chr_name),
+	inst(OP_5F,                     'W'),
+	inst(OP_60,                     'WLIBBLB'),
+	inst(OP_61,                     'W'),
+	inst(OP_62,                     'BW'),
+	inst(OP_63,                     'BW'),
+	inst(OP_64,                     'W'),
+	inst(OP_65,                     'iiii'),
+	inst(OP_66,                     'BW'),
+	inst(OP_67,                     'WL'),
+	inst(OP_68,                     'W'),
+	inst(SetCameraDistance,         'ii'),          # SetCameraDistance(distance, duration)
+	inst(MoveCamera,                'hhhi'),        # MoveCamera(horizon, vertical, obliquity, duration)
+	inst(OP_6B,                     'ii'),
+	inst(OP_6C,                     'B'),
+	inst(OP_6D,                     'BW'),
+	inst(OP_6E,                     'BWWWL'),
+	inst(SetMapObjFlags,            'BL'),
+	inst(ClearMapObjFlags,          'BL'),
+	inst(OP_71,                     'WB'),
+	inst(OP_72,                     'BBL'),
+	inst(SetMapObjFrame,            NO_OPERAND,             0,                          scp_76),
+	inst(OP_74,                     'BW'),
+	inst(OP_75,                     'BW'),
+	inst(OP_76,                     'W'),
+	inst(SetEventSkip,              NO_OPERAND,             INSTRUCTION_START_BLOCK,    scp_set_event_skip),
+	inst(OP_78,                     'B'),
+	inst(OP_79,                     'BBBBL'),
+	inst(OP_7A,                     'LLLL'),
+	inst(SetChrChip,                'BWWW'),
+	inst(OP_7C,                     'BB'),
+	inst(LoadEffect,                'BS'),
+	inst(PlayEffect,                'BBWWiiihhhiiiwiiii'),
+	inst(OP_7F,                     'BBBSWLLLWWWLLLL'),
+	inst(StopEffect,                'BB'),
+	inst(OP_81,                     'BB'),
+	inst(OP_82,                     'B'),
+	inst(OP_83,                     'W'),
+	inst(SetChrChipByIndex,         'WB'),
+	inst(SetChrSubChip,             'WB'),
+	inst(SetChrNameByIndex,         NO_OPERAND,             0,                          scp_set_chr_name_by_index),
+	inst(SetChrPos,                 'WiiiH'),
+	inst(OP_88,                     'Wiiih'),
+	inst(TurnDirection,             'WWH'),
+	inst(OP_8A,                     'WLLW'),
+	inst(OP_8B,                     'WWW'),
+	inst(OP_8C,                     'WLLLLL'),
+	inst(OP_8D,                     'WiiiiB'),
+	inst(OP_8E,                     'WLLLLB'),
+	inst(OP_8F,                     'WLLLLB'),
+	inst(OP_90,                     'WLLLLB'),
+	inst(OP_91,                     'WWLLB'),
+	inst(OP_92,                     'WWLLB'),
+	inst(OP_93,                     'BWWLLB'),
+	inst(OP_94,                     'WLLLLL'),
+	inst(OP_95,                     'WLLLLL'),
+	inst(OP_96,                     'WLLLLW'),
+	inst(OP_97,                     NO_OPERAND,             0,                          scp_9f),
+	inst(OP_98,                     'WHBB'),
+	inst(OP_99,                     NO_OPERAND,             0,                          scp_a1),
+	inst(SetChrFlags,               'WW'),
+	inst(ClearChrFlags,             'WW'),
+	inst(SetChrBattleFlags,         'WW'),
+	inst(ClearChrBattleFlags,       'WW'),
+	inst(OP_9E,                     'WLLLL'),
+	inst(OP_9F,                     'WBBBBL'),
+	inst(OP_A0,                     'WBBBL'),
+	inst(SetScenarioFlags,          NO_OPERAND,             0,                          scp_set_scenario_flags),
+	inst(ClearScenarioFlags,        NO_OPERAND,             0,                          scp_clear_scenario_flags),
+	inst(OP_A3,                     'W'),
+	inst(OP_A4,                     'W'),
+	inst(OP_A5,                     'W'),
+	inst(OP_A6,                     'WW'),
+	inst(OP_A7,                     'B'),
+	inst(OP_A8,                     'W'),
+	inst(OutputDebugInt,            'B'),
+	inst(OP_AA,                     'B'),
+	inst(OP_AB,                     'BW'),
+	inst(LoadOps),                                                  # obsolete
+	inst(ModifyEventFlags,          'CCW'),     # ModifyEventFlags(set_or_clear, event_index, flags)   0: set, 1: clear
+	inst(PlayMovie,                 'BSWW'),
+	inst(OP_AF,                     'B'),
+	inst(ReplaceBGM,                'MM'),
+	inst(OP_B1, 					'B'),
+	inst(UseItem,                   'WW'),
+	inst(OP_B3,                     'BW'),
+	inst(OP_B4,                     'BB'),
+	inst(SetChrChipPat,             'BBL'),                         # SetChrChipPat(chr_id, func_id, param)
+	inst(LoadChrChipPat),
+	inst(OP_B7,                     'BBWWWBiiiiii'),
+	inst(OP_B8,                     'BBWW'),
+	inst(MiniGame,                  'BLLLLLLLL'),
+	inst(OP_BA,                     'BB'),
+	inst(OP_BB,                     'BL'),
+	inst(CreatePortrait,            'CHHHHHHHHHHHHLBS'),
+	inst(OP_BD,                     'BBLLLL'),
+	inst(OP_BE,                     'BBB'),
+	inst(PlaceName2,                'hhSBh'),       # PlaceName2(x, y, itp_name, 0, duration)
+	inst(PartySelect,               'C'),           # PartySelect(0 = select menu, save = 1, restore = 2)
+	inst(OP_C1,                     NO_OPERAND,             0,                          scp_cf),
+	inst(MenuCmd,                   NO_OPERAND,             0,                          scp_menu_cmd),
+	inst(OP_C3,                     'W'),
+	inst(OP_C4,                     NO_OPERAND,             0,                          scp_d2),
+	inst(OP_C5,                     'WBS'),
+	inst(OP_C6,                     'LL'),
+	inst(OP_C7,                     'WLLLL'),
+	inst(LoadChrToIndex,            NO_OPERAND,             0,                          scp_load_chr),
+	inst(OP_C9,                     'B'),
+	inst(OP_CA,                     'BB'),
+	inst(OP_CB,                     'BB'),
+	inst(OP_CC,                     'B'),
+	inst(OP_CD,                     'B'),
+	inst(OP_CE),
+	inst(OP_CF,                     'S'),
+	inst(LoadAnimeChip,             'WBB'),
+	inst(OP_D1,                     'BB'),
+	inst(OP_D2,                     'B'),
+	inst(OP_D3,                     'LLL'),
+	inst(OP_D4,                     NO_OPERAND,             0,                          scp_e4),
+	inst(OP_D5,                     'B'),
+	inst(OP_D6,                     'BBBBBBL'),
+	inst(OP_D7),
+	inst(OP_D8),
+	inst(ShowSaveClearMenu),
+	inst(OP_DA,                     'BW'),
+	inst(OP_DB,                     'L'),
+	inst(OP_DC,                     'B'),
+	inst(OP_DD,                     'W'),
+	inst(OP_DE,                     'WB'),
+	inst(OP_DF,                     'W'),
+	inst(OP_E0,                     'WW'),
+	inst(OP_E1,                     'B'),
+	inst(OP_E2,                     'BLLL'),
+	inst(OP_E3,                     ''),
+	inst(OP_E4,                     'LLLLLLLLLLLL'),
+	inst(OP_E5,                     'LWWLBLL'),
+	inst(OP_E6,                     'BSLLB'),
+	inst(OP_E7,                     'LBBBBLL'),
+	inst(OP_E8,                     'B'),
+	inst(OP_E9,                     'BBB'),
+	inst(OP_EA,                     'BBSSLLLLLLLLLB'),
+	inst(OP_EB,                     'BBLLLLLLLBBBBL'),
+	inst(OP_EC,                     'BB'),
+	inst(OP_ED,                     'B'),
+	inst(OP_EE,                     ''),
+	inst(OP_EF,                     ''),
+	inst(OP_F0,                     ''),
+	inst(OP_F1,                     ''),
+	inst(OP_F2,                     'BB'),
+	inst(OP_F3,                     'BB'),
 ]
 
 del inst
@@ -2020,311 +2057,6 @@ for op in edao_op_list:
     edao_op_table[op.OpCode] = op
     op.Container = edao_op_table
 
-from Assembler.InstructionTable import *
-from Base.EDAOBase import *
-from GameData.ItemNameMap import *
-
-def GetOpCode(fs):
-    return fs.ReadByte()
-
-def WriteOpCode(fs, op):
-    return fs.WriteByte(op)
-
-edao_op_table = InstructionTable(GetOpCode, WriteOpCode, DefaultGetLabelName, CODE_PAGE)
-
-InstructionNames = {}
-
-
-
-InstructionNames[0x00]  = 'ExitThread'
-InstructionNames[0x01]  = 'Return'
-InstructionNames[0x02]  = 'Jc'
-InstructionNames[0x03]  = 'Jump'
-InstructionNames[0x04]  = 'Switch'
-InstructionNames[0x05]  = 'Call'
-InstructionNames[0x06]  = 'NewScene'
-InstructionNames[0x07]  = 'IdleLoop'
-InstructionNames[0x08]  = 'Sleep'
-InstructionNames[0x09]  = 'SetMapFlags'
-InstructionNames[0x0A]  = 'ClearMapFlags'
-InstructionNames[0x0B]  = 'FadeToDark'
-InstructionNames[0x0C]  = 'FadeToBright'
-InstructionNames[0x0D]  = 'OP_0D'
-InstructionNames[0x0E]  = 'Fade'
-InstructionNames[0x0F]  = 'Battle'
-InstructionNames[0x10]  = 'OP_10'
-InstructionNames[0x11]  = 'OP_11'
-InstructionNames[0x12]  = 'StopSound'
-InstructionNames[0x13]  = 'OP_13'
-InstructionNames[0x14]  = 'BlurSwitch'
-InstructionNames[0x15]  = 'CancelBlur'
-InstructionNames[0x16]  = 'OP_16'
-InstructionNames[0x17]  = 'ShowSaveMenu'
-InstructionNames[0x19]  = 'EventBegin'
-InstructionNames[0x1A]  = 'EventEnd'
-InstructionNames[0x1B]  = 'OP_1B'
-InstructionNames[0x1C]  = 'OP_1C'
-InstructionNames[0x1D]  = 'SetBarrier'
-InstructionNames[0x1E]  = 'PlayBGM'
-InstructionNames[0x1F]  = 'OP_1F'
-InstructionNames[0x20]  = 'VolumeBGM'
-InstructionNames[0x21]  = 'StopBGM'
-InstructionNames[0x22]  = 'WaitBGM'
-InstructionNames[0x23]  = 'Sound'
-InstructionNames[0x24]  = 'OP_24'
-InstructionNames[0x25]  = 'OP_25'
-InstructionNames[0x26]  = 'SoundDistance'
-InstructionNames[0x27]  = 'SoundLoad'
-InstructionNames[0x28]  = 'Yield'
-InstructionNames[0x29]  = 'OP_29'
-InstructionNames[0x2A]  = 'OP_2A'
-InstructionNames[0x2B]  = 'OP_2B'
-InstructionNames[0x2C]  = 'OP_2C'
-InstructionNames[0x2D]  = 'OP_2D'
-InstructionNames[0x2E]  = 'AddParty'
-InstructionNames[0x2F]  = 'RemoveParty'
-InstructionNames[0x30]  = 'ClearParty'
-InstructionNames[0x31]  = 'OP_31'
-InstructionNames[0x32]  = 'OP_32'
-InstructionNames[0x35]  = 'RemoveCraft'
-InstructionNames[0x36]  = 'AddCraft'
-InstructionNames[0x37]  = 'OP_37'
-InstructionNames[0x38]  = 'OP_38'
-InstructionNames[0x39]  = 'AddSepith'
-InstructionNames[0x3A]  = 'SubSepith'
-InstructionNames[0x3B]  = 'AddMira'
-InstructionNames[0x3C]  = 'SubMira'
-InstructionNames[0x3D]  = 'OP_3D'
-InstructionNames[0x3E]  = 'OP_3E'
-InstructionNames[0x3F]  = 'AddItemNumber'
-InstructionNames[0x40]  = 'SubItemNumber'
-InstructionNames[0x41]  = 'GetItemNumber'
-InstructionNames[0x42]  = 'OP_42'
-InstructionNames[0x43]  = 'GetPartyIndex'
-InstructionNames[0x44]  = 'BeginChrThread'
-InstructionNames[0x45]  = 'EndChrThread'
-InstructionNames[0x46]  = 'QueueWorkItem'
-InstructionNames[0x47]  = 'QueueWorkItem2'
-InstructionNames[0x48]  = 'WaitChrThread'
-InstructionNames[0x49]  = 'OP_49'
-InstructionNames[0x4A]  = 'Event'
-InstructionNames[0x4B]  = 'OP_4B'
-InstructionNames[0x4C]  = 'OP_4C'
-InstructionNames[0x4D]  = 'OP_4D'
-InstructionNames[0x4E]  = 'RunExpression'
-InstructionNames[0x4F]  = 'OP_4F'
-InstructionNames[0x50]  = 'OP_50'
-InstructionNames[0x51]  = 'OP_51'
-InstructionNames[0x52]  = 'OP_52'
-InstructionNames[0x53]  = 'TalkBegin'
-InstructionNames[0x54]  = 'TalkEnd'
-InstructionNames[0x55]  = 'AnonymousTalk'
-InstructionNames[0x56]  = 'OP_56'
-InstructionNames[0x57]  = 'OP_57'
-InstructionNames[0x58]  = 'MenuTitle'
-InstructionNames[0x59]  = 'CloseMessageWindow'
-InstructionNames[0x5A]  = 'OP_5A'
-InstructionNames[0x5B]  = 'SetMessageWindowPos'
-InstructionNames[0x5C]  = 'ChrTalk'
-InstructionNames[0x5D]  = 'NpcTalk'
-InstructionNames[0x5E]  = 'Menu'
-InstructionNames[0x5F]  = 'MenuEnd'
-InstructionNames[0x60]  = 'OP_60'
-InstructionNames[0x61]  = 'SetChrName'
-InstructionNames[0x62]  = 'OP_62'
-InstructionNames[0x63]  = 'OP_63'
-InstructionNames[0x64]  = 'OP_64'
-InstructionNames[0x65]  = 'OP_65'
-InstructionNames[0x66]  = 'OP_66'
-InstructionNames[0x67]  = 'OP_67'
-InstructionNames[0x68]  = 'OP_68'
-InstructionNames[0x69]  = 'OP_69'
-InstructionNames[0x6A]  = 'OP_6A'
-InstructionNames[0x6B]  = 'OP_6B'
-InstructionNames[0x6C]  = 'SetCameraDistance'
-InstructionNames[0x6D]  = 'MoveCamera'
-InstructionNames[0x6E]  = 'OP_6E'
-InstructionNames[0x6F]  = 'OP_6F'
-InstructionNames[0x70]  = 'OP_70'
-InstructionNames[0x71]  = 'OP_71'
-InstructionNames[0x72]  = 'SetMapObjFlags'
-InstructionNames[0x73]  = 'ClearMapObjFlags'
-InstructionNames[0x74]  = 'OP_74'
-InstructionNames[0x75]  = 'OP_75'
-InstructionNames[0x76]  = 'SetMapObjFrame'
-InstructionNames[0x77]  = 'OP_77'
-InstructionNames[0x78]  = 'OP_78'
-InstructionNames[0x79]  = 'OP_79'
-InstructionNames[0x7A]  = 'SetEventSkip'
-InstructionNames[0x7B]  = 'OP_7B'
-InstructionNames[0x7D]  = 'OP_7D'
-InstructionNames[0x82]  = 'OP_82'
-InstructionNames[0x83]  = 'SetChrChip'
-InstructionNames[0x84]  = 'OP_84'
-InstructionNames[0x85]  = 'LoadEffect'
-InstructionNames[0x86]  = 'PlayEffect'
-InstructionNames[0x87]  = 'OP_87'
-InstructionNames[0x88]  = 'StopEffect'
-InstructionNames[0x89]  = 'OP_89'
-InstructionNames[0x8A]  = 'OP_8A'
-InstructionNames[0x8B]  = 'OP_8B'
-InstructionNames[0x8C]  = 'SetChrChipByIndex'
-InstructionNames[0x8D]  = 'SetChrSubChip'
-InstructionNames[0x8E]  = 'OP_8E'
-InstructionNames[0x8F]  = 'SetChrPos'
-InstructionNames[0x90]  = 'OP_90'
-InstructionNames[0x91]  = 'TurnDirection'
-InstructionNames[0x92]  = 'OP_92'
-InstructionNames[0x93]  = 'OP_93'
-InstructionNames[0x94]  = 'OP_94'
-InstructionNames[0x95]  = 'OP_95'
-InstructionNames[0x96]  = 'OP_96'
-InstructionNames[0x97]  = 'OP_97'
-InstructionNames[0x98]  = 'OP_98'
-InstructionNames[0x99]  = 'OP_99'
-InstructionNames[0x9A]  = 'OP_9A'
-InstructionNames[0x9B]  = 'OP_9B'
-InstructionNames[0x9C]  = 'OP_9C'
-InstructionNames[0x9D]  = 'OP_9D'
-InstructionNames[0x9E]  = 'OP_9E'
-InstructionNames[0x9F]  = 'OP_9F'
-InstructionNames[0xA0]  = 'OP_A0'
-InstructionNames[0xA1]  = 'OP_A1'
-InstructionNames[0xA2]  = 'SetChrFlags'
-InstructionNames[0xA3]  = 'ClearChrFlags'
-InstructionNames[0xA4]  = 'SetChrBattleFlags'
-InstructionNames[0xA5]  = 'ClearChrBattleFlags'
-InstructionNames[0xA6]  = 'OP_A6'
-InstructionNames[0xA7]  = 'OP_A7'
-InstructionNames[0xA8]  = 'OP_A8'
-InstructionNames[0xA9]  = 'SetScenarioFlags'
-InstructionNames[0xAA]  = 'ClearScenarioFlags'
-InstructionNames[0xAB]  = 'OP_AB'
-InstructionNames[0xAC]  = 'OP_AC'
-InstructionNames[0xAD]  = 'OP_AD'
-InstructionNames[0xAE]  = 'OP_AE'
-InstructionNames[0xAF]  = 'OP_AF'
-InstructionNames[0xB2]  = 'OP_B2'
-InstructionNames[0xB3]  = 'OutputDebugInt'
-InstructionNames[0xB4]  = 'OP_B4'
-InstructionNames[0xB5]  = 'OP_B5'
-InstructionNames[0xB6]  = 'LoadOps'
-InstructionNames[0xB7]  = 'ModifyEventFlags'
-InstructionNames[0xB8]  = 'PlayMovie'
-InstructionNames[0xB9]  = 'OP_B9'
-InstructionNames[0xBA]  = 'ReplaceBGM'
-InstructionNames[0xBC]  = 'OP_BC'
-InstructionNames[0xBD]  = 'UseItem'
-InstructionNames[0xBE]  = 'OP_BE'
-InstructionNames[0xBF]  = 'OP_BF'
-InstructionNames[0xC0]  = 'SetChrChipPat'
-InstructionNames[0xC2]  = 'LoadChrChipPat'
-InstructionNames[0xC3]  = 'OP_C3'
-InstructionNames[0xC4]  = 'OP_C4'
-InstructionNames[0xC5]  = 'MiniGame'
-InstructionNames[0xC7]  = 'OP_C7'
-InstructionNames[0xC9]  = 'OP_C9'
-InstructionNames[0xCA]  = 'CreatePortrait'
-InstructionNames[0xCB]  = 'OP_CB'
-InstructionNames[0xCC]  = 'OP_CC'
-InstructionNames[0xCD]  = 'PlaceName2'
-InstructionNames[0xCE]  = 'PartySelect'
-InstructionNames[0xCF]  = 'OP_CF'
-InstructionNames[0xD0]  = 'MenuCmd'
-InstructionNames[0xD1]  = 'OP_D1'
-InstructionNames[0xD2]  = 'OP_D2'
-InstructionNames[0xD3]  = 'OP_D3'
-InstructionNames[0xD4]  = 'OP_D4'
-InstructionNames[0xD5]  = 'OP_D5'
-InstructionNames[0xD6]  = 'LoadChrToIndex'
-InstructionNames[0xD7]  = 'OP_D7'
-InstructionNames[0xD8]  = 'OP_D8'
-InstructionNames[0xD9]  = 'OP_D9'
-InstructionNames[0xDA]  = 'OP_DA'
-InstructionNames[0xDC]  = 'OP_DC'
-InstructionNames[0xDD]  = 'OP_DD'
-InstructionNames[0xDE]  = 'OP_DE'
-InstructionNames[0xDF]  = 'LoadAnimeChip'
-InstructionNames[0xE0]  = 'OP_E0'
-InstructionNames[0xE1]  = 'OP_E1'
-InstructionNames[0xE2]  = 'OP_E2'
-InstructionNames[0xE3]  = 'OP_E3'
-InstructionNames[0xE4]  = 'OP_E4'
-InstructionNames[0xE5]  = 'OP_E5'
-InstructionNames[0xE6]  = 'OP_E6'
-InstructionNames[0xE7]  = 'OP_E7'
-InstructionNames[0xE8]  = 'OP_E8'
-InstructionNames[0xE9]  = 'ShowSaveClearMenu'
-InstructionNames[0xF0]  = 'OP_F0'
-InstructionNames[0xF3]  = 'OP_F3'
-InstructionNames[0xF4]  = 'OP_F4'
-InstructionNames[0xFA]  = 'OP_FA'
-InstructionNames[0xFB]  = 'OP_FB'
-InstructionNames[0xFC]  = 'OP_FC'
-InstructionNames[0xFD]  = 'OP_FD'
-InstructionNames[0xFE]  = 'OP_FE'
-InstructionNames[0xFF]  = 'OP_FF'
-edao_op_table2 = InstructionTable(GetOpCode, WriteOpCode, DefaultGetLabelName, CODE_PAGE)
-
-
-
-for op in edao_op_list:
-    edao_op_table2[op.OpCode] = op
-    op.Container = edao_op_table2
-
-
-
-def switch(a,b):
-    edao_op_table[a] = edao_op_table2[b]
-    edao_op_table[a].Container=edao_op_table
-
-
-
-
-
-
-for i in range(len(edao_op_list)):
-    print("switch(",hex(i),",",hex(edao_op_list[i].OpCode),")")
-    switch(i,edao_op_list[i].OpCode)
-edao_op_table[0xE5]=instEvoIgnore(OP_E2, 'LWWLBLL')
-edao_op_table[0xE6]=instEvoIgnore(OP_E3, 'BSLLB')
-edao_op_table[0xE7] = instEvoIgnore(OP_E4, 'LBBBBLL')
-edao_op_table[0xE8] = instEvoIgnore(OP_E5, 'B')
-edao_op_table[0xE9]=instEvoIgnore(OP_E6, 'BBB')
-edao_op_table[0xEA]=instEvoIgnore(OP_E7, 'BBSSLLLLLLLLLB')
-edao_op_table[0xEB]=instEvoIgnore(OP_E8, 'BBLLLLLLLBBBBL')
-edao_op_table[0xEC]=instEvoIgnore(OP_FF, 'BB')
-edao_op_table[0xED]=instEvoIgnore(OP_FF, 'B')
-edao_op_table[0xEE]=instEvoIgnore(OP_E0, '')
-edao_op_table[0xEF] = instEvoIgnore(OP_E0, '')
-edao_op_table[0xF0] = instEvoIgnore(OP_E0, '')
-edao_op_table[0xF1] = instEvoIgnore(OP_E0, '')
-edao_op_table[0xF2] = instEvoIgnore(OP_E0, 'BB')
-
-edao_op_table[0xE3] = instEvoIgnore(OP_E0, '')
-
-edao_op_table[0xE4]=instEvoIgnore(OP_E1, 'LLLLLLLLLLLL')
-edao_op_table[0xF3]=instEvoIgnore(OP_FF, 'B')
-
-edao_op_table[0xE4].Container=edao_op_table
-edao_op_table[0xE5].Container=edao_op_table
-edao_op_table[0xE2].Container=edao_op_table
-edao_op_table[0xE3].Container=edao_op_table
-
-edao_op_table[0xE5].Container=edao_op_table
-edao_op_table[0xE6].Container=edao_op_table
-edao_op_table[0xE7].Container=edao_op_table
-edao_op_table[0xE8].Container=edao_op_table
-edao_op_table[0xE9].Container=edao_op_table
-edao_op_table[0xEA].Container=edao_op_table
-edao_op_table[0xEB].Container=edao_op_table
-edao_op_table[0xEC].Container=edao_op_table
-edao_op_table[0xED].Container=edao_op_table
-edao_op_table[0xEE].Container=edao_op_table
-edao_op_table[0xEF].Container=edao_op_table
-edao_op_table[0xF0].Container=edao_op_table
-edao_op_table[0xF1].Container=edao_op_table
-edao_op_table[0xE3].Container=edao_op_table
 
 
 '''
