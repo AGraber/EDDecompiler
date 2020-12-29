@@ -139,7 +139,7 @@ class Disassembler:
 
             entry = InstructionTable[op]
 
-            plog('    %08X: %s' % (pos, entry.OpName), end='')
+            plog('    %08X: %s' % (pos, entry.OpName)) #, end='')
 
             data.Instruction        = Instruction(op)
             data.Instruction.Flags  = entry.Flags

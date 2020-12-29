@@ -897,13 +897,29 @@ class ScenarioInfo:
 
         return '\r\n'.join(info)
 
-
-def procfile(file, append_place_name = True):
+def procfile(file, cp=None, gp=gp, append_place_name=False):
+    if cp:
+        ed6sc.CODE_PAGE = cp
+        ed6sc.ed6sc_op_table.CodePage = cp
+        
+    global GAME_PATH
+    GAME_PATH = gp
+    setGamePath(GAME_PATH)
+    initDatFileNameTable(GAME_PATH)
+    
     console.setTitle(os.path.basename(file))
-    print('disasm %s' % file)
+    #print('disasm %s' % file)
     scena = ScenarioInfo()
-    if scena.open(file) is not False:
-        scena.SaveToFile(os.path.splitext(file)[0] + '.py', append_place_name)
+    
+    scena.open(file)
+    
+    outfile = file.partition(".")[0] + ".py"
+    
+    plog('SAVE %s' % outfile)   
+    
+    scena.SaveToFile(outfile, append_place_name)
+    
+    return outfile
 
 def main():
     global textPosTable, replaceOption
