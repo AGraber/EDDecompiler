@@ -1458,7 +1458,7 @@ def procfile(file, cp=None):
     
     scena.open(file)
     
-    outfile = file.partition(".")[0] + ".py"
+    outfile = os.path.splitext(file)[0] + ".py"
     
     plog('SAVE %s' % outfile)   
     

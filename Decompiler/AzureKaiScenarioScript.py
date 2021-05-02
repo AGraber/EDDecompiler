@@ -1,6 +1,6 @@
 from Assembler.Assembler2s import *
-from Base.ZeroBase import *
-import Instruction.ScenaOpTableEDZero as edao
+from Base.EDAOSNBase import *
+import Instruction.ScenaOpTableEDAOKai as edao
 
 import importlib.machinery
 import os
@@ -495,7 +495,7 @@ class ScenarioChipFrameInfo:
         self.Reserve        = fs.ReadByte()
         self.SubChipCount   = fs.ReadByte()
         self.SubChipIndex   = struct.unpack('<' + 'B' * self.SubChipCount, fs.read(self.SubChipCount))
-        
+
         if self.SubChipCount != 8:
             fs.seek(8 - self.SubChipCount, io.SEEK_CUR)
 
@@ -1013,14 +1013,13 @@ class ScenarioInfo:
         self.ScenaFunctions = list(struct.unpack('<' + 'I' * int(self.ScenaFunctionTable.Size / 4), fs.read(self.ScenaFunctionTable.Size)))
 
 
-        ChipFrameInfoLast = self.ChipFrameInfoOffset
+        ChipFrameInfoNumber = 0
         for monster in self.ScnInfo[SCN_INFO_MONSTER]:
-            ChipFrameInfoLast = max(ChipFrameInfoLast, max(monster.StandFrameInfoIndex, monster.MoveFrameInfoIndex))
+            ChipFrameInfoNumber = max(ChipFrameInfoNumber, max(monster.StandFrameInfoIndex, monster.MoveFrameInfoIndex))
 
         fs.seek(self.ChipFrameInfoOffset)
         self.ChipFrameInfo = []
-        
-        while fs.tell() < self.ScenaFunctionTable.Offset:
+        for i in range(ChipFrameInfoNumber + 1):
             self.ChipFrameInfo.append(ScenarioChipFrameInfo(fs))
 
         fs.seek(self.StringTableOffset)
@@ -1057,27 +1056,25 @@ class ScenarioInfo:
         index = -1
         codeblocks = []
         blockoffsetmap = {}
-        
-        
         for func in self.ScenaFunctions:
             index += 1
             if func in blockoffsetmap:
                 codeblocks.append(blockoffsetmap[func])
                 continue
-            
+
             fs.seek(func)
 
             data = Disassembler.DisasmData()
             data.Stream = fs
             data.GlobalLabelTable = self.GlobalLabelTable
-            
+
             block = disasm.DisasmBlock2(data)
 
             block.Name = 'Function_%d_%X' % (index, block.Offset)
             codeblocks.append(block)
 
             blockoffsetmap[func] = block
-        
+
         #for i in range(fs.size()): if i not in offsetlist: print('%X' % i)
         #input()
 
@@ -1250,9 +1247,10 @@ class ScenarioInfo:
         mapname = mapname if mapname != '' else 'MapIndex'
 
         hdr = []
-        hdr.append('from ZeroScenarioHelper import *')
+        hdr.append('from ScenarioHelper import *')
         hdr.append('')
         hdr.append('SetCodePage("%s")'                          % edao.CODE_PAGE)
+
         hdr.append('')
         hdr.append('CreateScenaFile(')
         hdr.append('    "%s",                # FileName'        % filename)
@@ -1472,10 +1470,10 @@ if __name__ == '__main__':
 #    iterlib.forEachFileMP(procfile, sys.argv[1:], '*.bin')
     cp = 'gbk'
     start_argv = 1
-    if len(sys.argv) > 1 and sys.argv[1].startswith('--cp='):
+    if sys.argv[1].startswith('--cp='):
         cp = sys.argv[1][5:]
         start_argv = 2
-    elif len(sys.argv) > 1 and sys.argv[1].startswith('--cppy='):
+    elif sys.argv[1].startswith('--cppy='):
         cppy = os.path.abspath(sys.argv[1][7:])
         ccode = importlib.machinery.SourceFileLoader(os.path.basename(cppy).split('.')[0], cppy).load_module()
         ccode.register()
@@ -1485,7 +1483,7 @@ if __name__ == '__main__':
     edao.CODE_PAGE = cp
     edao.edao_op_table.CodePage = cp
 
-    files = [] if len(sys.argv) <= start_argv else iterlib.forEachGetFiles(sys.argv[start_argv:], '*.bin')
+    files = iterlib.forEachGetFiles(sys.argv[start_argv:], '*.bin')
 
     #Log.OpenLog(sys.argv[start_argv] + '\..\log.txt')
 

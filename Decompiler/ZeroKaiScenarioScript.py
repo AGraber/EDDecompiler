@@ -1,6 +1,6 @@
 from Assembler.Assembler2s import *
 from Base.ZeroBase import *
-import Instruction.ScenaOpTableEDZero as edao
+import Instruction.ScenaOpTableEDZeroKai as edao
 
 import importlib.machinery
 import os
@@ -1030,7 +1030,7 @@ class ScenarioInfo:
         if endmz != -1:
             buf = buf[:endmz]
 
-        stringtable = buf.decode(edao.CODE_PAGE).rstrip('\x00').split('\x00')
+        stringtable = buf.decode(edao.CODE_PAGE, 'backslashreplace').rstrip('\x00').split('\x00')
         for string in stringtable:
             #if string in self.StringTable: continue
             self.StringTable.append(string)
