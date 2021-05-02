@@ -22,11 +22,13 @@ class BattleActionScriptInfo:
     ActionFileType_Item     = 2
 
     def __init__(self):
-        self.ActionListOffset       = 0
         self.ChrPosFactorOffset     = 0
-        self.Reserve                = 0
+        self.ActionListOffset       = 0
+        self.UnknownTableOffset     = 0
+        self.ActionStartOffset      = 0
         self.PreloadChipList        = []
-        self.ModelXFile             = ''
+        self.ModelFileList          = []
+        self.UnknownTableList       = []
         self.ActionList             = []
 
         self.ChrPosFactor = []
@@ -59,7 +61,7 @@ class BattleActionScriptInfo:
 
         if self.ActionFileType == self.ActionFileType_Normal:
             self.ChrPosFactorOffset = fs.ReadUShort()
-            self.Reserve            = fs.ReadUShort()
+            self.UnknownTableOffset = fs.ReadUShort()
 
             while True:
                 index = fs.ReadULong()
@@ -261,10 +263,10 @@ class BattleActionScriptInfo:
 
     def FormatCodeBlocks(self):
         disasm = Disassembler(edao.edao_as_op_table)
-
+        
         blocks = []
         blockoffsetmap = {}
-        for block in self.CraftActions:
+        for block in sorted(self.CraftActions, key=lambda x: x.Offset):
             if block.Offset == INVALID_ACTION_OFFSET:
                 continue
 
@@ -276,6 +278,7 @@ class BattleActionScriptInfo:
             data = Disassembler.FormatData()
 
             data.Block = block
+            data.Block.Instructions = sorted(data.Block.Instructions, key=lambda x: x.Offset)
             data.GlobalLabelTable   = self.GlobalLabelTable
 
             name = GetValidLabelName(block.Name)
@@ -396,13 +399,35 @@ def label(labelname):
 def getlabel(name):
     return actionfile.Labels[name]
 
-def CreateBattleAction(filename, ChrPosFactorList = None):
+def CreateBattleAction(filename, ChrPosFactorList = None, ModelFileList = None, UnknownTableList = None):
 
     if not IsTupleOrList(ChrPosFactorList):
         raise Exception('ChrPosFactorList must be list')
 
     global actionfile
     actionfile = BattleActionScriptInfoPort()
+
+    start_argv = 1
+    global CODE_PAGE
+    cp = CODE_PAGE
+    if sys.argv[1].startswith('--cp='):
+        cp = sys.argv[1][5:]
+        start_argv = 2
+    elif sys.argv[1].startswith('--cppy='):
+        cppy = os.path.abspath(sys.argv[1][7:])
+        ccode = importlib.machinery.SourceFileLoader(os.path.basename(cppy).split('.')[0], cppy).load_module()
+        ccode.register()
+        cp = ccode.get_name()
+        start_argv = 2
+
+    if cp == 'NotSet':
+        cp = 'gbk'
+    CODE_PAGE = cp
+    edao.CODE_PAGE = cp
+    edao.edao_as_op_table.CodePage = cp
+
+    if len(sys.argv) > start_argv:
+        filename = os.path.join(sys.argv[start_argv], filename)
 
     actionfile.fs = fileio.FileStream()
     actionfile.fs.Open(filename, 'wb+')
@@ -413,7 +438,21 @@ def CreateBattleAction(filename, ChrPosFactorList = None):
         f.X = factor[0]
         f.Y = factor[1]
         actionfile.ChrPosFactor.append(f)
+        
+    if IsTupleOrList(ModelFileList):
+        actionfile.ModelFileList = ModelFileList
+        
+    if IsTupleOrList(UnknownTableList):
+        actionfile.UnknownTableList = UnknownTableList
 
+    asname = os.path.basename(filename).lower()
+
+    if asname == 'as90000.dat':
+        actionfile.ActionFileType = actionfile.ActionFileType_Arts
+    elif asname == 'as90001.dat':
+        actionfile.ActionFileType = actionfile.ActionFileType_Item
+    else:
+        actionfile.ActionFileType = actionfile.ActionFileType_Normal
 
 def CreateArtsAction(filename):
 
@@ -428,51 +467,64 @@ def CreateArtsAction(filename):
     actionfile.ActionListOffset = 2
     actionfile.fs.WriteUShort(actionfile.ActionListOffset)
 
-
 def AddPreloadChip(ChipFileList):
 
     if not IsTupleOrList(ChipFileList):
         raise Exception('ChipFileList must be list')
-
-    fs = actionfile.fs
-    fs.seek(6)
-
-    for chip in ChipFileList:
-        fs.WriteULong(ChipFileIndex(chip).Index())
-
-    fs.WriteULong(0xFFFFFFFF)
-    fs.WriteUShort(0)
-
-    actionfile.ChrPosFactorOffset = fs.tell()
-    for factor in actionfile.ChrPosFactor:
-        fs.WriteByte(factor.X)
-        fs.WriteByte(factor.Y)
-
-    actionfile.ActionListOffset = fs.tell()
-    actionfile.ActionListOffset += 16 - actionfile.ActionListOffset % 16
-
-    fs.seek(0)
-    fs.WriteUShort(actionfile.ActionListOffset)
-    fs.WriteUShort(actionfile.ChrPosFactorOffset)
-    fs.seek(actionfile.ActionListOffset)
+    
+    actionfile.ChipFileList = list(ChipFileList)
 
 def CraftAction(CraftNameList):
 
     if not IsTupleOrList(CraftNameList):
         raise Exception('CraftNameList must be list')
 
-    fs = actionfile.fs
-    fs.seek(actionfile.ActionListOffset)
-
     actionfile.ActionList = list(CraftNameList)
+    
+    fs = actionfile.fs
+    
+    if actionfile.ActionFileType == actionfile.ActionFileType_Normal:
+        fs.seek(6)
 
+        for chip in actionfile.ChipFileList:
+            fs.WriteULong(ChipFileIndex(chip).Index())
+
+        fs.WriteULong(0xFFFFFFFF)
+        
+        for model in actionfile.ModelFileList:
+            fs.WriteMultiByte(model, "cp932")
+            fs.WriteByte(0)
+        fs.WriteByte(0)
+        
+        if len(actionfile.UnknownTableList) > 0:
+            actionfile.UnknownTableOffset = fs.tell()
+            for factor in actionfile.UnknownTableList:
+                fs.WriteUShort(factor)
+    else:
+        fs.seek(2)
+    
+    actionfile.ActionListOffset = fs.tell()
     for craft in CraftNameList:
         if craft != INVALID_ACTION_OFFSET:
             actionfile.DelayFixLabels.append(LabelEntry(craft, fs.tell()))
 
         fs.WriteUShort(INVALID_ACTION_OFFSET)
 
-    fs.write(b'\x00' * (16 - len(CraftNameList) * 2 % 16))
+    fs.write(b'\x00\x00')
+    
+    actionfile.ChrPosFactorOffset = fs.tell()
+    for factor in actionfile.ChrPosFactor:
+        fs.WriteByte(factor.X)
+        fs.WriteByte(factor.Y)
+    
+    actionfile.ActionStartOffset = fs.tell()
+    
+    fs.seek(0)
+    fs.WriteUShort(actionfile.ActionListOffset)
+    if actionfile.ActionFileType == actionfile.ActionFileType_Normal:
+        fs.WriteUShort(actionfile.ChrPosFactorOffset)
+        fs.WriteUShort(actionfile.UnknownTableOffset)
+    fs.seek(actionfile.ActionStartOffset)
 
 
 for op, inst in edao.edao_as_op_table.items():
@@ -550,12 +602,24 @@ Jc(0x16, 0x1, 0x0, "loc_A4A")
 
 '''
 
-def procfile(file):
+def procfile(file, cp=None):
+    if cp:
+        edao.CODE_PAGE = cp
+        edao.edao_op_table.CodePage = cp
+    
     console.setTitle(os.path.basename(file))
-    print('disasm %s' % file)
+    #print('disasm %s' % file)
     asdat = BattleActionScriptInfo()
+    
     asdat.open(file)
-    asdat.SaveToFile(file + '.py')
+    
+    outfile = os.path.splitext(file)[0] + ".py"
+    
+    plog('SAVE %s' % outfile)   
+    
+    asdat.SaveToFile(outfile)
+    
+    return outfile
 
 if __name__ == '__main__':
 #    iterlib.forEachFileMP(procfile, sys.argv[1:], 'as*.dat')

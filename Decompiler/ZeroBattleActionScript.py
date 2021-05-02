@@ -267,10 +267,10 @@ class BattleActionScriptInfo:
 
     def FormatCodeBlocks(self):
         disasm = Disassembler(edzero.edzero_as_op_table)
-
+        
         blocks = []
         blockoffsetmap = {}
-        for block in self.CraftActions:
+        for block in sorted(self.CraftActions, key=lambda x: x.Offset):
             if block.Offset == INVALID_ACTION_OFFSET:
                 continue
 
@@ -287,12 +287,13 @@ class BattleActionScriptInfo:
             name = GetValidLabelName(block.Name)
             if not name.startswith('Craft_'): name = 'Craft_' + name
 
-            blocks.append((block.Offset, ['def %s(): pass' % name] + disasm.FormatCodeBlock2(data)))
+            blocks.append(['def %s(): pass' % name])
+            blocks.append(disasm.FormatCodeBlock2(data))
 
         #for x in disasmtbl: print('%08X' % x)
         #input()
 
-        return map(lambda x: x[1], sorted(blocks, key=lambda x: x[0]))
+        return blocks
 
     def SaveToFile(self, filename):
         lines = []
@@ -407,6 +408,28 @@ def CreateBattleAction(filename, ChrPosFactorList = None, ModelFileList = None, 
     global actionfile
     actionfile = BattleActionScriptInfoPort()
 
+    start_argv = 1
+    global CODE_PAGE
+    cp = CODE_PAGE
+    if sys.argv[1].startswith('--cp='):
+        cp = sys.argv[1][5:]
+        start_argv = 2
+    elif sys.argv[1].startswith('--cppy='):
+        cppy = os.path.abspath(sys.argv[1][7:])
+        ccode = importlib.machinery.SourceFileLoader(os.path.basename(cppy).split('.')[0], cppy).load_module()
+        ccode.register()
+        cp = ccode.get_name()
+        start_argv = 2
+
+    if cp == 'NotSet':
+        cp = 'gbk'
+    CODE_PAGE = cp
+    edao.CODE_PAGE = cp
+    edao.edao_as_op_table.CodePage = cp
+
+    if len(sys.argv) > start_argv:
+        filename = os.path.join(sys.argv[start_argv], filename)
+
     actionfile.fs = fileio.FileStream()
     actionfile.fs.Open(filename, 'wb+')
 
@@ -431,6 +454,19 @@ def CreateBattleAction(filename, ChrPosFactorList = None, ModelFileList = None, 
         actionfile.ActionFileType = actionfile.ActionFileType_Item
     else:
         actionfile.ActionFileType = actionfile.ActionFileType_Normal
+
+def CreateArtsAction(filename):
+
+    global actionfile
+    actionfile = BattleActionScriptInfoPort()
+
+    actionfile.fs = fileio.FileStream()
+    actionfile.fs.Open(filename, 'wb+')
+
+    actionfile.ActionFileType = BattleActionScriptInfoPort.ActionFileType_Arts
+
+    actionfile.ActionListOffset = 2
+    actionfile.fs.WriteUShort(actionfile.ActionListOffset)
 
 def AddPreloadChip(ChipFileList):
 
@@ -477,7 +513,7 @@ def CraftAction(CraftNameList):
 
     if actionfile.ActionFileType == actionfile.ActionFileType_Normal:
         fs.write(b'\x00' * (16 - len(CraftNameList) * 2 % 16))
-
+    
     actionfile.ChrPosFactorOffset = fs.tell()
     for factor in actionfile.ChrPosFactor:
         fs.WriteByte(factor.X)
@@ -568,15 +604,49 @@ Jc(0x16, 0x1, 0x0, "loc_A4A")
 
 '''
 
-def procfile(file):
+def procfile(file, cp=None):
+    if cp:
+        edao.CODE_PAGE = cp
+        edao.edao_op_table.CodePage = cp
+    
     console.setTitle(os.path.basename(file))
-    print('disasm %s' % file)
+    #print('disasm %s' % file)
     asdat = BattleActionScriptInfo()
+    
     asdat.open(file)
-    asdat.SaveToFile(file + '.py')
+    
+    outfile = os.path.splitext(file)[0] + ".py"
+    
+    plog('SAVE %s' % outfile)   
+    
+    asdat.SaveToFile(outfile)
+    
+    return outfile
 
 if __name__ == '__main__':
-    cp = 'cp932'
-    for file in sys.argv[1:]:
+#    iterlib.forEachFileMP(procfile, sys.argv[1:], 'as*.dat')
+    cp = 'gbk'
+    start_argv = 1
+    if sys.argv[1].startswith('--cp='):
+        cp = sys.argv[1][5:]
+        start_argv = 2
+    elif sys.argv[1].startswith('--cppy='):
+        cppy = os.path.abspath(sys.argv[1][7:])
+        ccode = importlib.machinery.SourceFileLoader(os.path.basename(cppy).split('.')[0], cppy).load_module()
+        ccode.register()
+        cp = ccode.get_name()
+        start_argv = 2
+
+    edao.CODE_PAGE = cp
+    edao.edao_as_op_table.CodePage = cp
+
+    files = iterlib.forEachGetFiles(sys.argv[start_argv:], 'as*.dat')
+
+    #Log.OpenLog(sys.argv[start_argv] + '\..\log.txt')
+
+    for file in files:
+        plog('START %s' % file)
         procfile(file)
-    #iterlib.forEachFileMP(procfile, sys.argv[1:], 'as*.dat')
+        plog('FINISHED %s' % file)
+
+    #Log.CloseLog()
