@@ -1,6 +1,7 @@
 from Assembler.Assembler2s import *
 from Base.ZeroBase import *
 import Instruction.ScenaOpTableEDZeroKai as edao
+import KaiEncoding
 
 import importlib.machinery
 import os
