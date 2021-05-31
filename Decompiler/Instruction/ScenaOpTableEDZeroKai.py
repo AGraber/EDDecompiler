@@ -1823,7 +1823,7 @@ edao_op_list = \
     inst(VolumeBGM,                 'BL'),
     inst(StopBGM,                   'L'),
     inst(WaitBGM),
-    inst(Sound,                     'HCCCCC'),
+    inst(Sound,                     'ICCC'),
     inst(OP_24,                     'W'),
     inst(OP_25,                     'WB'),
     inst(SoundDistance,             'WLLLLLBL'),
