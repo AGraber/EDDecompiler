@@ -457,6 +457,7 @@ def scpstr(ctrlcode, value = None):
         SCPSTR_CODE_COLOR       : lambda : '\\x%02X\\x%02X' % (ctrlcode, value),
         SCPSTR_CODE_LINE_FEED   : lambda : '\\x%02X' % (ctrlcode),
         0x0A                    : lambda : '\\x%02X' % (ctrlcode),
+        0x0D                    : lambda : '\\x%02X' % (ctrlcode),
         SCPSTR_CODE_ENTER       : lambda : '\\x%02X' % (ctrlcode),
         SCPSTR_CODE_CLEAR       : lambda : '\\x%02X' % (ctrlcode),
         0x04                    : lambda : '\\x%02X' % (ctrlcode),
