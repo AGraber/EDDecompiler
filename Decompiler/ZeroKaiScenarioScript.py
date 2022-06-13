@@ -1251,7 +1251,7 @@ class ScenarioInfo:
         mapname = mapname if mapname != '' else 'MapIndex'
 
         hdr = []
-        hdr.append('from ZeroScenarioHelper import *')
+        hdr.append('from ZeroKaiScenarioHelper import *')
         hdr.append('')
         hdr.append('SetCodePage("%s")'                          % edao.CODE_PAGE)
         hdr.append('')
