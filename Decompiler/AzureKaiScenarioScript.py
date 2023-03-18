@@ -1248,7 +1248,7 @@ class ScenarioInfo:
         mapname = mapname if mapname != '' else 'MapIndex'
 
         hdr = []
-        hdr.append('from ScenarioHelper import *')
+        hdr.append('from AzureKaiScenarioHelper import *')
         hdr.append('')
         hdr.append('SetCodePage("%s")'                          % edao.CODE_PAGE)
 
